@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<component type="Form" name="Create" cloudDestinationProperty="Create" layout="BorderLayout" borderLayoutAbsoluteCenter="false" title="Create" cyclicFocus="true" >
+  <component type="Container" name="Container1" cloudDestinationProperty="Container1" layout="BoxLayout" boxLayoutAxis="Y" >
+    <layoutConstraint value="South" />
+    <component type="TextField" name="You" cloudBoundProperty="text" cloudDestinationProperty="You" text="" hint="You" >
+    </component>
+    <component type="TextField" name="Him" cloudBoundProperty="text" cloudDestinationProperty="Him" text="" hint="Him" >
+    </component>
+    <component type="Button" name="Send" cloudDestinationProperty="Send" text="Send" >
+    </component>
+  </component>
+  <component type="Container" name="Messages" cloudDestinationProperty="Messages" >
+    <layoutConstraint value="Center" />
+  </component>
+  <component type="Button" name="Save" cloudDestinationProperty="Save" text="Save" >
+    <layoutConstraint value="North" />
+  </component>
+</component>

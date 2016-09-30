@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<component type="Form" name="Chat" cloudDestinationProperty="Chat" layout="BorderLayout" borderLayoutAbsoluteCenter="false" title="Chat" >
+  <component type="Container" name="Container" cloudDestinationProperty="Container" layout="TableLayout" tableLayoutRows="1" tableLayoutColumns="2" >
+    <layoutConstraint value="South" />
+    <component type="TextField" name="Message" cloudBoundProperty="text" cloudDestinationProperty="Message" text="" hint="Message" >
+    </component>
+    <component type="Button" name="Send" cloudDestinationProperty="Send" text="Send" >
+    </component>
+  </component>
+  <component type="Container" name="Messages" cloudDestinationProperty="Messages" >
+    <layoutConstraint value="Center" />
+  </component>
+</component>

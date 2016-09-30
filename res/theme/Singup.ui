@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<component type="Form" name="Singup" cloudDestinationProperty="Singup" layout="FlowLayout" flowLayoutFillRows="false" flowLayoutAlign="4" flowLayoutValign="4" title="Singup" >
+  <component type="Container" name="Container" cloudDestinationProperty="Container" layout="BoxLayout" boxLayoutAxis="Y" >
+    <component type="TextField" name="Username" cloudBoundProperty="text" cloudDestinationProperty="Username" text="" hint="Username" >
+    </component>
+    <component type="TextField" name="Mobile" cloudBoundProperty="text" cloudDestinationProperty="Mobile" text="" hint="Mobile" >
+    </component>
+    <component type="TextField" name="Email" cloudBoundProperty="text" cloudDestinationProperty="Email" text="" hint="Email" >
+    </component>
+    <component type="TextField" name="Password" cloudBoundProperty="text" cloudDestinationProperty="Password" text="" hint="Password" >
+    </component>
+    <component type="Button" name="Singup" cloudDestinationProperty="Singup" text="Singup" >
+    </component>
+    <component type="Button" name="Login" cloudDestinationProperty="Login" commandName="Login" commandId="1" commandAction="Main" commandBack="false" text="Login" >
+    </component>
+  </component>
+</component>

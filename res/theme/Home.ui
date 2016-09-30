@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<component type="Form" name="Home" cloudDestinationProperty="Home" layout="BorderLayout" borderLayoutAbsoluteCenter="false" title="Home" >
+  <component type="MultiList" name="Conversitons" cloudDestinationProperty="Conversitons" >
+    <layoutConstraint value="North" />
+    <mapItems>
+      <stringItem key="Line2" value="more..." />
+      <stringItem key="Line1" value="Entry 1" />
+    </mapItems>
+    <mapItems>
+      <stringItem key="Line2" value="more..." />
+      <stringItem key="Line1" value="Entry 2" />
+    </mapItems>
+    <mapItems>
+      <stringItem key="Line2" value="more..." />
+      <stringItem key="Line1" value="Entry 3" />
+    </mapItems>
+  </component>
+  <component type="Container" name="Container" cloudDestinationProperty="Container" layout="GridLayout" gridLayoutRows="1" gridLayoutColumns="2" >
+    <layoutConstraint value="South" />
+    <component type="Button" name="Add" cloudDestinationProperty="Add" text="Add" >
+    </component>
+    <component type="Button" name="Create" cloudDestinationProperty="Create" commandName="Create" commandId="3" commandAction="Create" commandBack="false" text="Create" >
+    </component>
+  </component>
+</component>
