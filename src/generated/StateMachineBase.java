@@ -162,6 +162,18 @@ public abstract class StateMachineBase extends UIBuilder {
         return cmp;
     }
 
+    public com.codename1.ui.Button findHimPic(Component root) {
+        return (com.codename1.ui.Button)findByName("HimPic", root);
+    }
+
+    public com.codename1.ui.Button findHimPic() {
+        com.codename1.ui.Button cmp = (com.codename1.ui.Button)findByName("HimPic", Display.getInstance().getCurrent());
+        if(cmp == null && aboutToShowThisContainer != null) {
+            cmp = (com.codename1.ui.Button)findByName("HimPic", aboutToShowThisContainer);
+        }
+        return cmp;
+    }
+
     public com.codename1.ui.Container findContainer1(Component root) {
         return (com.codename1.ui.Container)findByName("Container1", root);
     }
@@ -170,6 +182,18 @@ public abstract class StateMachineBase extends UIBuilder {
         com.codename1.ui.Container cmp = (com.codename1.ui.Container)findByName("Container1", Display.getInstance().getCurrent());
         if(cmp == null && aboutToShowThisContainer != null) {
             cmp = (com.codename1.ui.Container)findByName("Container1", aboutToShowThisContainer);
+        }
+        return cmp;
+    }
+
+    public com.codename1.ui.Container findContainer2(Component root) {
+        return (com.codename1.ui.Container)findByName("Container2", root);
+    }
+
+    public com.codename1.ui.Container findContainer2() {
+        com.codename1.ui.Container cmp = (com.codename1.ui.Container)findByName("Container2", Display.getInstance().getCurrent());
+        if(cmp == null && aboutToShowThisContainer != null) {
+            cmp = (com.codename1.ui.Container)findByName("Container2", aboutToShowThisContainer);
         }
         return cmp;
     }
@@ -290,6 +314,18 @@ public abstract class StateMachineBase extends UIBuilder {
         com.codename1.ui.Component cmp = (com.codename1.ui.Component)findByName("Singup", Display.getInstance().getCurrent());
         if(cmp == null && aboutToShowThisContainer != null) {
             cmp = (com.codename1.ui.Component)findByName("Singup", aboutToShowThisContainer);
+        }
+        return cmp;
+    }
+
+    public com.codename1.ui.Button findYouPic(Component root) {
+        return (com.codename1.ui.Button)findByName("YouPic", root);
+    }
+
+    public com.codename1.ui.Button findYouPic() {
+        com.codename1.ui.Button cmp = (com.codename1.ui.Button)findByName("YouPic", Display.getInstance().getCurrent());
+        if(cmp == null && aboutToShowThisContainer != null) {
+            cmp = (com.codename1.ui.Button)findByName("YouPic", aboutToShowThisContainer);
         }
         return cmp;
     }
@@ -944,8 +980,16 @@ public abstract class StateMachineBase extends UIBuilder {
                 onCreate_YouAction(c, event);
                 return;
             }
+            if("YouPic".equals(c.getName())) {
+                onCreate_YouPicAction(c, event);
+                return;
+            }
             if("Him".equals(c.getName())) {
                 onCreate_HimAction(c, event);
+                return;
+            }
+            if("HimPic".equals(c.getName())) {
+                onCreate_HimPicAction(c, event);
                 return;
             }
             if("Send".equals(c.getName())) {
@@ -1028,7 +1072,13 @@ public abstract class StateMachineBase extends UIBuilder {
       protected void onCreate_YouAction(Component c, ActionEvent event) {
       }
 
+      protected void onCreate_YouPicAction(Component c, ActionEvent event) {
+      }
+
       protected void onCreate_HimAction(Component c, ActionEvent event) {
+      }
+
+      protected void onCreate_HimPicAction(Component c, ActionEvent event) {
       }
 
       protected void onCreate_SendAction(Component c, ActionEvent event) {

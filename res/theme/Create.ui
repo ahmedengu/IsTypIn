@@ -3,14 +3,22 @@
 <component type="Form" name="Create" cloudDestinationProperty="Create" layout="BorderLayout" borderLayoutAbsoluteCenter="false" title="Create" cyclicFocus="true" >
   <component type="Container" name="Container1" cloudDestinationProperty="Container1" layout="BoxLayout" boxLayoutAxis="Y" >
     <layoutConstraint value="South" />
-    <component type="TextField" name="You" cloudBoundProperty="text" cloudDestinationProperty="You" text="" hint="You" >
+    <component type="Container" name="Container2" cloudDestinationProperty="Container2" layout="GridLayout" gridLayoutRows="1" gridLayoutColumns="2" >
+      <component type="TextField" name="You" cloudBoundProperty="text" cloudDestinationProperty="You" text="" hint="You" >
+      </component>
+      <component type="Button" name="YouPic" cloudDestinationProperty="YouPic" text="send pic" >
+      </component>
     </component>
-    <component type="TextField" name="Him" cloudBoundProperty="text" cloudDestinationProperty="Him" text="" hint="Him" >
+    <component type="Container" name="Container" cloudDestinationProperty="Container" layout="GridLayout" gridLayoutRows="1" gridLayoutColumns="2" >
+      <component type="TextField" name="Him" cloudBoundProperty="text" cloudDestinationProperty="Him" text="" hint="Him" >
+      </component>
+      <component type="Button" name="HimPic" cloudDestinationProperty="HimPic" text="send pic" >
+      </component>
     </component>
     <component type="Button" name="Send" cloudDestinationProperty="Send" text="Send" >
     </component>
   </component>
-  <component type="Container" name="Messages" cloudDestinationProperty="Messages" >
+  <component type="Container" name="Messages" cloudDestinationProperty="Messages" scrollableY="true" layout="BoxLayout" boxLayoutAxis="Y" >
     <layoutConstraint value="Center" />
   </component>
   <component type="Button" name="Save" cloudDestinationProperty="Save" text="Save" >

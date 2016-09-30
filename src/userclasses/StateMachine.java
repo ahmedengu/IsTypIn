@@ -7,16 +7,18 @@
 
 package userclasses;
 
+import com.codename1.capture.Capture;
 import com.codename1.components.ToastBar;
-import com.codename1.ui.Component;
-import com.codename1.ui.Form;
+import com.codename1.ui.*;
 import com.codename1.ui.events.ActionEvent;
+import com.codename1.ui.layouts.BoxLayout;
+import com.codename1.ui.util.ImageIO;
 import com.codename1.ui.util.Resources;
-import com.parse4cn1.Parse;
-import com.parse4cn1.ParseException;
-import com.parse4cn1.ParseUser;
+import com.parse4cn1.*;
 import generated.StateMachineBase;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -38,7 +40,7 @@ public class StateMachine extends StateMachineBase {
      * the constructor/class scope to avoid race conditions
      */
     protected void initVars(Resources res) {
-        Parse.initialize("http://localhost:1337/parse", "myAppId", "master");
+        Parse.initialize("http://env-3406900.mircloud.host/parse", "myAppId", "master");
     }
 
 
@@ -128,23 +130,108 @@ public class StateMachine extends StateMachineBase {
 
     @Override
     protected void onCreate_SaveAction(Component c, ActionEvent event) {
+        Dialog dialog = new Dialog("Create");
+        dialog.setLayout(new BoxLayout(BoxLayout.Y_AXIS));
+        TextField name = new TextField("");
+        name.setHint("Name");
+        Button save = new Button("Save");
+        save.addActionListener(evt -> {
+            ParseObject object = ParseObject.create("Story");
+            object.put("data", data.get("create"));
+            object.put("name", name.getText());
+            try {
+                object.save();
+                dialog.dispose();
 
+                showForm("Home", null);
+            } catch (ParseException e) {
+                e.printStackTrace();
+                ToastBar.showErrorMessage(e.getMessage());
 
+            }
+
+        });
+
+        dialog.add(name);
+        dialog.add(save);
+        dialog.show();
     }
 
     @Override
     protected void onCreate_SendAction(Component c, ActionEvent event) {
-        if (findYou().getText().length() > 0||findHim().getText().length() > 0) {
-            ArrayList<Map<String, String>> create = (ArrayList<Map<String, String>>) data.get("create");
-            Map<String, String> map = new HashMap<>();
+        if (findYou().getText().length() > 0 && findHim().getText().length() > 0) {
+            findYou().setText("");
+            findHim().setText("");
+        } else if (findYou().getText().length() > 0 || findHim().getText().length() > 0) {
+            ArrayList<Map<String, Object>> create = (ArrayList<Map<String, Object>>) data.get("create");
+            Map<String, Object> map = new HashMap<>();
             map.put("message", (findYou().getText().length() > 0) ? findYou().getText() : findHim().getText());
+            map.put("owner", (findYou().getText().length() > 0) ? "you" : "him");
             create.add(map);
+            findYou().setText("");
+            findHim().setText("");
+
+            Label label = new Label(map.get("message").toString());
+            label.setUIID(map.get("owner").toString());
+            findMessages().add(label);
+
+            findMessages().getParent().repaint();
+            data.put("create", create);
 
         }
+
     }
 
     @Override
     protected void beforeCreate(Form f) {
-        data.put("create", new ArrayList<Map<String, String>>());
+        data.put("create", new ArrayList<Map<String, Object>>());
+    }
+
+    @Override
+    protected void onCreate_YouPicAction(Component c, ActionEvent event) {
+        pic("you");
+    }
+
+    @Override
+    protected void onCreate_HimPicAction(Component c, ActionEvent event) {
+        pic("him");
+    }
+
+    private void pic(String owner) {
+        String s = Capture.capturePhoto();
+        if (s != null) {
+            ArrayList<Map<String, Object>> create = (ArrayList<Map<String, Object>>) data.get("create");
+            Map<String, Object> map = new HashMap<>();
+            map.put("message", "");
+            map.put("owner", owner);
+            create.add(map);
+            findYou().setText("");
+            findHim().setText("");
+
+            Label label = new Label(map.get("message").toString());
+            label.setUIID(map.get("owner").toString());
+            try {
+                label.setIcon(Image.createImage(s).scaledWidth(50));
+
+                ImageIO imgIO = ImageIO.getImageIO();
+                ByteArrayOutputStream out = new ByteArrayOutputStream();
+                imgIO.save(label.getIcon(), out, ImageIO.FORMAT_JPEG, 1);
+                byte[] ba = out.toByteArray();
+                ParseFile file = new ParseFile(ParseUser.getCurrent().getUsername() + ".jpg", ba, "image/jpeg");
+                findMessages().add(label);
+                findMessages().getParent().repaint();
+
+                file.save();
+                map.put("icon", file);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+
+            data.put("create", create);
+        }
     }
 }
