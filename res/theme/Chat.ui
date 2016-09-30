@@ -8,7 +8,7 @@
     <component type="Button" name="Send" cloudDestinationProperty="Send" text="Send" >
     </component>
   </component>
-  <component type="Container" name="Messages" cloudDestinationProperty="Messages" >
+  <component type="Container" name="Messages" cloudDestinationProperty="Messages" scrollableY="true" layout="BoxLayout" boxLayoutAxis="Y" >
     <layoutConstraint value="Center" />
   </component>
 </component>

@@ -12,6 +12,7 @@ import com.codename1.components.ToastBar;
 import com.codename1.ui.*;
 import com.codename1.ui.events.ActionEvent;
 import com.codename1.ui.layouts.BoxLayout;
+import com.codename1.ui.list.DefaultListModel;
 import com.codename1.ui.util.ImageIO;
 import com.codename1.ui.util.Resources;
 import com.parse4cn1.*;
@@ -19,9 +20,8 @@ import generated.StateMachineBase;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
+import java.util.List;
 
 /**
  * @author Your name here
@@ -102,24 +102,51 @@ public class StateMachine extends StateMachineBase {
 
     @Override
     protected void beforeChat(Form f) {
+        ParseObject chat = (ParseObject) data.get("chat");
+        List<HashMap> dataList = chat.getList("data");
+        for (int i = 0; i < dataList.size(); i++) {
+            Label label = new Label( dataList.get(i).get("message").toString());
+            label.setUIID( dataList.get(i).get("owner").toString());
+            findMessages().add(label);
 
+        }
+        f.repaint();
     }
 
     @Override
     protected void beforeHome(Form f) {
-        ArrayList<Map<String, Object>> maps = new ArrayList<>();
 
     }
 
     @Override
     protected void onAdd_ResultsAction(Component c, ActionEvent event) {
+        Map<String, Object> at = (Map<String, Object>) findResults().getModel().getItemAt(findResults().getSelectedIndex());
 
-
+        data.put("chat", at.get("object"));
+        showForm("Chat", null);
     }
 
     @Override
     protected void beforeAdd(Form f) {
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Story");
+        try {
+            java.util.List<ParseObject> objects = query.find();
 
+            ArrayList<Map<String, Object>> d = new ArrayList<>();
+
+            for (int i = 0; i < objects.size(); i++) {
+                Map<String, Object> map = new HashMap<>();
+                map.put("Line1", objects.get(i).getString("name"));
+                map.put("object", objects.get(i));
+
+                d.add(map);
+
+            }
+            findResults().setModel(new DefaultListModel(d));
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

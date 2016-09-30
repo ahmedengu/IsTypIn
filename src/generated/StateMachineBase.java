@@ -368,6 +368,7 @@ public abstract class StateMachineBase extends UIBuilder {
 
     public static final int COMMAND_HomeCreate = 3;
     public static final int COMMAND_MainSingup = 2;
+    public static final int COMMAND_HomeAdd = 4;
     public static final int COMMAND_SingupLogin = 1;
 
     protected boolean onHomeCreate() {
@@ -375,6 +376,10 @@ public abstract class StateMachineBase extends UIBuilder {
     }
 
     protected boolean onMainSingup() {
+        return false;
+    }
+
+    protected boolean onHomeAdd() {
         return false;
     }
 
@@ -393,6 +398,13 @@ public abstract class StateMachineBase extends UIBuilder {
 
             case COMMAND_MainSingup:
                 if(onMainSingup()) {
+                    ev.consume();
+                    return;
+                }
+                break;
+
+            case COMMAND_HomeAdd:
+                if(onHomeAdd()) {
                     ev.consume();
                     return;
                 }
