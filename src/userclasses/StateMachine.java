@@ -80,6 +80,12 @@ public class StateMachine extends StateMachineBase {
     @Override
     protected void onHome_ConversitonsAction(Component c, ActionEvent event) {
 
+        Map<String, Object> at = (Map<String, Object>) findConversitons().getModel().getItemAt(findConversitons().getSelectedIndex());
+
+        data.put("chat", at.get("object"));
+
+        showForm("Chat", null);
+
 
     }
 
@@ -93,28 +99,71 @@ public class StateMachine extends StateMachineBase {
     protected void onCreateHome() {
 
     }
-
+    int anInt=0;
+    List<HashMap> dataList;
     @Override
     protected void onChat_SendAction(Component c, ActionEvent event) {
+        if(anInt<dataList.size()) {
+            Label label = new Label(dataList.get(anInt).get("message").toString());
+
+            label.setUIID(dataList.get(anInt).get("owner").toString());
+            if (dataList.get(anInt).get("icon") != null) {
+                EncodedImage placeholder = EncodedImage.createFromImage(fetchResourceFile().getImage("placeholder.jpg"), false);
+                String url = "http://env-3406900.mircloud.host/parse/files/myAppId/" + ((ParseFile) dataList.get(anInt).get("icon")).getName();
+                label.setIcon(URLImage.createToStorage(placeholder, url.substring(url.lastIndexOf("/") + 1), url));
+            }
+
+            findMessages().add(label);
+
+            anInt++;
 
 
+            for (; anInt < dataList.size(); anInt++) {
+                if (dataList.get(anInt).get("owner").toString().equals("him")) {
+                    label = new Label(dataList.get(anInt).get("message").toString());
+
+                    label.setUIID(dataList.get(anInt).get("owner").toString());
+                    if (dataList.get(anInt).get("icon") != null) {
+                        EncodedImage placeholder = EncodedImage.createFromImage(fetchResourceFile().getImage("placeholder.jpg"), false);
+                        String url = "http://env-3406900.mircloud.host/parse/files/myAppId/" + ((ParseFile) dataList.get(anInt).get("icon")).getName();
+                        label.setIcon(URLImage.createToStorage(placeholder, url.substring(url.lastIndexOf("/") + 1), url));
+                    }
+
+                    findMessages().add(label);
+                } else {
+
+                    break;
+                }
+
+            }
+
+
+            findMessages().getParent().repaint();
+        }else {
+            ToastBar.showErrorMessage("The end");
+        }
     }
 
     @Override
     protected void beforeChat(Form f) {
         ParseObject chat = (ParseObject) data.get("chat");
-        List<HashMap> dataList = chat.getList("data");
-        for (int i = 0; i < dataList.size(); i++) {
-            Label label = new Label(dataList.get(i).get("message").toString());
+        dataList = chat.getList("data");
+        for (anInt = 0; anInt < dataList.size(); anInt++) {
+            if (dataList.get(anInt).get("owner").toString().equals("him")) {
+                Label label = new Label(dataList.get(anInt).get("message").toString());
 
-            label.setUIID(dataList.get(i).get("owner").toString());
-            if (dataList.get(i).get("icon") != null) {
-                EncodedImage placeholder = EncodedImage.createFromImage(fetchResourceFile().getImage("placeholder.jpg"), false);
-                String url = "http://env-3406900.mircloud.host/parse/files/myAppId/" + ((ParseFile) dataList.get(i).get("icon")).getName();
-                label.setIcon(URLImage.createToStorage(placeholder, url.substring(url.lastIndexOf("/") + 1), url));
+                label.setUIID(dataList.get(anInt).get("owner").toString());
+                if (dataList.get(anInt).get("icon") != null) {
+                    EncodedImage placeholder = EncodedImage.createFromImage(fetchResourceFile().getImage("placeholder.jpg"), false);
+                    String url = "http://env-3406900.mircloud.host/parse/files/myAppId/" + ((ParseFile) dataList.get(anInt).get("icon")).getName();
+                    label.setIcon(URLImage.createToStorage(placeholder, url.substring(url.lastIndexOf("/") + 1), url));
+                }
+
+                findMessages().add(label);
+            }else{
+
+                break;
             }
-
-            findMessages().add(label);
 
         }
         f.repaint();
@@ -122,21 +171,56 @@ public class StateMachine extends StateMachineBase {
 
     @Override
     protected void beforeHome(Form f) {
+        try {
+            ParseQuery<ParseObject> query = ParseQuery.getQuery("StoryUser");
+            query.include("story");
+            query.whereEqualTo("user", ParseUser.getCurrent());
+            List<ParseObject> results = query.find();
+
+            ArrayList<Map<String, Object>> d = new ArrayList<>();
+
+            for (int i = 0; i < results.size(); i++) {
+                Map<String, Object> map = new HashMap<>();
+                map.put("Line1", results.get(i).getParseObject("story").getString("name"));
+                map.put("object", results.get(i).getParseObject("story"));
+
+                d.add(map);
+            }
+
+            findConversitons().setModel(new DefaultListModel(d));
+            data.put("conversitons", results);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            ToastBar.showErrorMessage(e.getMessage());
+        }
 
     }
 
     @Override
     protected void onAdd_ResultsAction(Component c, ActionEvent event) {
-        Map<String, Object> at = (Map<String, Object>) findResults().getModel().getItemAt(findResults().getSelectedIndex());
+        try {
+            Map<String, Object> at = (Map<String, Object>) findResults().getModel().getItemAt(findResults().getSelectedIndex());
 
-        data.put("chat", at.get("object"));
-        showForm("Chat", null);
+            data.put("chat", at.get("object"));
+            ParseObject object = ParseObject.create("StoryUser");
+            ParseObject object1 = (ParseObject) at.get("object");
+            object.put("story", object1);
+            object.put("user", ParseUser.getCurrent());
+
+            object.save();
+
+            showForm("Chat", null);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            ToastBar.showErrorMessage(e.getMessage());
+        }
     }
 
     @Override
     protected void beforeAdd(Form f) {
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("Story");
         try {
+            ParseQuery<ParseObject> query = ParseQuery.getQuery("Story");
+            query.whereNotContainedIn("objectId", (List<ParseObject>) data.get("conversitons"));
             java.util.List<ParseObject> objects = query.find();
 
             ArrayList<Map<String, Object>> d = new ArrayList<>();

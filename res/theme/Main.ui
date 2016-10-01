@@ -2,9 +2,9 @@
 
 <component type="Form" name="Main" cloudDestinationProperty="Login" layout="FlowLayout" flowLayoutFillRows="false" flowLayoutAlign="4" flowLayoutValign="4" title="Login" cyclicFocus="true" >
   <component type="Container" name="Container" cloudDestinationProperty="Container" layout="BoxLayout" boxLayoutAxis="Y" >
-    <component type="TextField" name="Username" cloudBoundProperty="text" cloudDestinationProperty="Username" text="" hint="Username" >
+    <component type="TextField" name="Username" cloudBoundProperty="text" cloudDestinationProperty="Username" text="aaaa" hint="Username" >
     </component>
-    <component type="TextField" name="Password" cloudBoundProperty="text" cloudDestinationProperty="Password" text="" hint="Password" >
+    <component type="TextField" name="Password" cloudBoundProperty="text" cloudDestinationProperty="Password" text="aaaa" hint="Password" >
     </component>
     <component type="Button" name="Login" cloudDestinationProperty="Login" text="Login" >
     </component>

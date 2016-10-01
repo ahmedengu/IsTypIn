@@ -150,18 +150,6 @@ public abstract class StateMachineBase extends UIBuilder {
         return cmp;
     }
 
-    public com.codename1.ui.TextField findMessage(Component root) {
-        return (com.codename1.ui.TextField)findByName("Message", root);
-    }
-
-    public com.codename1.ui.TextField findMessage() {
-        com.codename1.ui.TextField cmp = (com.codename1.ui.TextField)findByName("Message", Display.getInstance().getCurrent());
-        if(cmp == null && aboutToShowThisContainer != null) {
-            cmp = (com.codename1.ui.TextField)findByName("Message", aboutToShowThisContainer);
-        }
-        return cmp;
-    }
-
     public com.codename1.ui.Button findHimPic(Component root) {
         return (com.codename1.ui.Button)findByName("HimPic", root);
     }
@@ -1058,10 +1046,6 @@ public abstract class StateMachineBase extends UIBuilder {
             }
         }
         if(rootContainerName.equals("Chat")) {
-            if("Message".equals(c.getName())) {
-                onChat_MessageAction(c, event);
-                return;
-            }
             if("Send".equals(c.getName())) {
                 onChat_SendAction(c, event);
                 return;
@@ -1127,9 +1111,6 @@ public abstract class StateMachineBase extends UIBuilder {
       }
 
       protected void onSingup_LoginAction(Component c, ActionEvent event) {
-      }
-
-      protected void onChat_MessageAction(Component c, ActionEvent event) {
       }
 
       protected void onChat_SendAction(Component c, ActionEvent event) {
