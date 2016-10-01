@@ -105,8 +105,15 @@ public class StateMachine extends StateMachineBase {
         ParseObject chat = (ParseObject) data.get("chat");
         List<HashMap> dataList = chat.getList("data");
         for (int i = 0; i < dataList.size(); i++) {
-            Label label = new Label( dataList.get(i).get("message").toString());
-            label.setUIID( dataList.get(i).get("owner").toString());
+            Label label = new Label(dataList.get(i).get("message").toString());
+
+            label.setUIID(dataList.get(i).get("owner").toString());
+            if (dataList.get(i).get("icon") != null) {
+                EncodedImage placeholder = EncodedImage.createFromImage(fetchResourceFile().getImage("placeholder.jpg"), false);
+                String url = "http://env-3406900.mircloud.host/parse/files/myAppId/" + ((ParseFile) dataList.get(i).get("icon")).getName();
+                label.setIcon(URLImage.createToStorage(placeholder, url.substring(url.lastIndexOf("/") + 1), url));
+            }
+
             findMessages().add(label);
 
         }

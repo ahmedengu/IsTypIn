@@ -630,6 +630,7 @@
     <image name="OKGR.borderTop_1.png" type="multi"  />
     <image name="OKGR.borderTopL_1.png" type="multi"  />
     <image name="OKGR.borderTopR_1.png" type="multi"  />
+    <image name="placeholder.jpg" type="multi"  />
     <image name="PlayMedia.png" type="multi"  />
     <image name="Popup_arrow.png" type="multi"  />
     <image name="Popup_arrow_bottom.png" type="multi"  />
