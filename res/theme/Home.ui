@@ -16,11 +16,4 @@
       <stringItem key="Line1" value="Entry 3" />
     </mapItems>
   </component>
-  <component type="Container" name="Container" cloudDestinationProperty="Container" layout="GridLayout" gridLayoutRows="1" gridLayoutColumns="2" >
-    <layoutConstraint value="South" />
-    <component type="Button" name="Add" cloudDestinationProperty="Add" commandName="Add" commandId="4" commandAction="Add" commandBack="false" text="Add" >
-    </component>
-    <component type="Button" name="Create" cloudDestinationProperty="Create" commandName="Create" commandId="3" commandAction="Create" commandBack="false" text="Create" >
-    </component>
-  </component>
 </component>

@@ -8,6 +8,8 @@
 package userclasses;
 
 import com.codename1.capture.Capture;
+import com.codename1.components.FloatingActionButton;
+import com.codename1.components.InfiniteProgress;
 import com.codename1.components.ToastBar;
 import com.codename1.ui.*;
 import com.codename1.ui.events.ActionEvent;
@@ -20,8 +22,10 @@ import generated.StateMachineBase;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Your name here
@@ -46,6 +50,7 @@ public class StateMachine extends StateMachineBase {
 
     @Override
     protected void onSingup_SingupAction(Component c, ActionEvent event) {
+        show();
         try {
             ParseUser user = ParseUser.create(findUsername().getText(), findPassword().getText());
             user.put("email", findEmail().getText());
@@ -59,10 +64,13 @@ public class StateMachine extends StateMachineBase {
             ToastBar.showErrorMessage(e.getMessage());
         }
 
+        hide();
+
     }
 
     @Override
     protected void onMain_LoginAction(Component c, ActionEvent event) {
+        show();
         try {
             ParseUser user = ParseUser.create(findUsername().getText(), findPassword().getText());
             user.login();
@@ -74,7 +82,7 @@ public class StateMachine extends StateMachineBase {
             ToastBar.showErrorMessage(e.getMessage());
         }
 
-
+        hide();
     }
 
     @Override
@@ -196,10 +204,22 @@ public class StateMachine extends StateMachineBase {
             ToastBar.showErrorMessage(e.getMessage());
         }
 
+        FloatingActionButton fab = FloatingActionButton.createFAB(FontImage.MATERIAL_ADD);
+        FloatingActionButton add = fab.createSubFAB(FontImage.MATERIAL_SEARCH, "Add");
+        FloatingActionButton create = fab.createSubFAB(FontImage.MATERIAL_CREATE, "Create");
+
+        add.addActionListener(evt -> showForm("Add", null));
+        create.addActionListener(evt -> showForm("Create", null));
+
+        fab.bindFabToContainer(f.getContentPane());
+
+
     }
 
     @Override
     protected void onAdd_ResultsAction(Component c, ActionEvent event) {
+        show();
+
         try {
             Map<String, Object> at = (Map<String, Object>) findResults().getModel().getItemAt(findResults().getSelectedIndex());
             ParseObject story = (ParseObject) at.get("object");
@@ -208,6 +228,7 @@ public class StateMachine extends StateMachineBase {
             query.whereEqualTo("user", ParseUser.getCurrent());
             query.whereEqualTo("story", story);
             List<ParseObject> results = query.find();
+
 
             if (results.size() == 0) {
                 ParseObject object = ParseObject.create("StoryUser");
@@ -222,6 +243,19 @@ public class StateMachine extends StateMachineBase {
             e.printStackTrace();
             ToastBar.showErrorMessage(e.getMessage());
         }
+        hide();
+
+    }
+
+    private void hide() {
+        ((Dialog) data.get("dialog")).dispose();
+    }
+
+    private void show() {
+//        if (data.get("dialog") == null)
+            data.put("dialog", new InfiniteProgress().showInifiniteBlocking());
+//        else
+//            ((Dialog) data.get("dialog")).show();
     }
 
     @Override
@@ -262,6 +296,7 @@ public class StateMachine extends StateMachineBase {
         name.setHint("Name");
         Button save = new Button("Save");
         save.addActionListener(evt -> {
+            show();
             ParseObject object = ParseObject.create("Story");
             object.put("data", data.get("create"));
             object.put("name", name.getText());
@@ -275,7 +310,7 @@ public class StateMachine extends StateMachineBase {
                 ToastBar.showErrorMessage(e.getMessage());
 
             }
-
+            hide();
         });
 
         dialog.add(name);
@@ -360,4 +395,6 @@ public class StateMachine extends StateMachineBase {
             data.put("create", create);
         }
     }
+
+
 }
