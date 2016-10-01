@@ -114,18 +114,6 @@ public abstract class StateMachineBase extends UIBuilder {
         this(res, null, loadTheme);
     }
 
-    public com.codename1.ui.Component findAdd(Component root) {
-        return (com.codename1.ui.Component)findByName("Add", root);
-    }
-
-    public com.codename1.ui.Component findAdd() {
-        com.codename1.ui.Component cmp = (com.codename1.ui.Component)findByName("Add", Display.getInstance().getCurrent());
-        if(cmp == null && aboutToShowThisContainer != null) {
-            cmp = (com.codename1.ui.Component)findByName("Add", aboutToShowThisContainer);
-        }
-        return cmp;
-    }
-
     public com.codename1.ui.Container findMessages(Component root) {
         return (com.codename1.ui.Container)findByName("Messages", root);
     }
@@ -282,18 +270,6 @@ public abstract class StateMachineBase extends UIBuilder {
         return cmp;
     }
 
-    public com.codename1.ui.Component findCreate(Component root) {
-        return (com.codename1.ui.Component)findByName("Create", root);
-    }
-
-    public com.codename1.ui.Component findCreate() {
-        com.codename1.ui.Component cmp = (com.codename1.ui.Component)findByName("Create", Display.getInstance().getCurrent());
-        if(cmp == null && aboutToShowThisContainer != null) {
-            cmp = (com.codename1.ui.Component)findByName("Create", aboutToShowThisContainer);
-        }
-        return cmp;
-    }
-
     public com.codename1.ui.Component findSingup(Component root) {
         return (com.codename1.ui.Component)findByName("Singup", root);
     }
@@ -354,20 +330,10 @@ public abstract class StateMachineBase extends UIBuilder {
         return cmp;
     }
 
-    public static final int COMMAND_HomeCreate = 3;
     public static final int COMMAND_MainSingup = 2;
-    public static final int COMMAND_HomeAdd = 4;
     public static final int COMMAND_SingupLogin = 1;
 
-    protected boolean onHomeCreate() {
-        return false;
-    }
-
     protected boolean onMainSingup() {
-        return false;
-    }
-
-    protected boolean onHomeAdd() {
         return false;
     }
 
@@ -377,22 +343,8 @@ public abstract class StateMachineBase extends UIBuilder {
 
     protected void processCommand(ActionEvent ev, Command cmd) {
         switch(cmd.getId()) {
-            case COMMAND_HomeCreate:
-                if(onHomeCreate()) {
-                    ev.consume();
-                    return;
-                }
-                break;
-
             case COMMAND_MainSingup:
                 if(onMainSingup()) {
-                    ev.consume();
-                    return;
-                }
-                break;
-
-            case COMMAND_HomeAdd:
-                if(onHomeAdd()) {
                     ev.consume();
                     return;
                 }
@@ -966,14 +918,6 @@ public abstract class StateMachineBase extends UIBuilder {
                 onHome_ConversitonsAction(c, event);
                 return;
             }
-            if("Add".equals(c.getName())) {
-                onHome_AddAction(c, event);
-                return;
-            }
-            if("Create".equals(c.getName())) {
-                onHome_CreateAction(c, event);
-                return;
-            }
         }
         if(rootContainerName.equals("Create")) {
             if("You".equals(c.getName())) {
@@ -1057,12 +1001,6 @@ public abstract class StateMachineBase extends UIBuilder {
       }
 
       protected void onHome_ConversitonsAction(Component c, ActionEvent event) {
-      }
-
-      protected void onHome_AddAction(Component c, ActionEvent event) {
-      }
-
-      protected void onHome_CreateAction(Component c, ActionEvent event) {
       }
 
       protected void onCreate_YouAction(Component c, ActionEvent event) {

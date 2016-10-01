@@ -17,6 +17,7 @@ import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.list.DefaultListModel;
 import com.codename1.ui.util.ImageIO;
 import com.codename1.ui.util.Resources;
+import com.codename1.ui.util.UITimer;
 import com.parse4cn1.*;
 import generated.StateMachineBase;
 
@@ -97,11 +98,6 @@ public class StateMachine extends StateMachineBase {
 
     }
 
-    @Override
-    protected void onHome_AddAction(Component c, ActionEvent event) {
-
-
-    }
 
     @Override
     protected void onCreateHome() {
@@ -114,53 +110,8 @@ public class StateMachine extends StateMachineBase {
     @Override
     protected void onChat_SendAction(Component c, ActionEvent event) {
         if (anInt < dataList.size()) {
-            Label label = new Label(dataList.get(anInt).get("message").toString());
+            if (dataList.get(anInt).get("owner").toString().equals("you")) {
 
-            label.setUIID(dataList.get(anInt).get("owner").toString());
-            if (dataList.get(anInt).get("icon") != null) {
-                EncodedImage placeholder = EncodedImage.createFromImage(fetchResourceFile().getImage("placeholder.jpg"), false);
-                String url = "http://env-3406900.mircloud.host/parse/files/myAppId/" + ((ParseFile) dataList.get(anInt).get("icon")).getName();
-                label.setIcon(URLImage.createToStorage(placeholder, url.substring(url.lastIndexOf("/") + 1), url));
-            }
-
-            findMessages().add(label);
-
-            anInt++;
-
-
-            for (; anInt < dataList.size(); anInt++) {
-                if (dataList.get(anInt).get("owner").toString().equals("him")) {
-                    label = new Label(dataList.get(anInt).get("message").toString());
-
-                    label.setUIID(dataList.get(anInt).get("owner").toString());
-                    if (dataList.get(anInt).get("icon") != null) {
-                        EncodedImage placeholder = EncodedImage.createFromImage(fetchResourceFile().getImage("placeholder.jpg"), false);
-                        String url = "http://env-3406900.mircloud.host/parse/files/myAppId/" + ((ParseFile) dataList.get(anInt).get("icon")).getName();
-                        label.setIcon(URLImage.createToStorage(placeholder, url.substring(url.lastIndexOf("/") + 1), url));
-                    }
-
-                    findMessages().add(label);
-                } else {
-
-                    break;
-                }
-
-            }
-
-
-            findMessages().getParent().repaint();
-        } else {
-            ToastBar.showErrorMessage("The end");
-        }
-    }
-
-    @Override
-    protected void beforeChat(Form f) {
-        show();
-        ParseObject chat = (ParseObject) data.get("chat");
-        dataList = chat.getList("data");
-        for (anInt = 0; anInt < dataList.size(); anInt++) {
-            if (dataList.get(anInt).get("owner").toString().equals("him")) {
                 Label label = new Label(dataList.get(anInt).get("message").toString());
 
                 label.setUIID(dataList.get(anInt).get("owner").toString());
@@ -171,13 +122,61 @@ public class StateMachine extends StateMachineBase {
                 }
 
                 findMessages().add(label);
-            } else {
 
-                break;
+                anInt++;
+                if (anInt < dataList.size() && dataList.get(anInt).get("owner").toString().equals("him")) {
+                    findSend().setHidden(true);
+                    findSend().repaint();
+                }
+                findMessages().getParent().repaint();
             }
-
+        } else {
+            ToastBar.showErrorMessage("The end");
         }
-        f.repaint();
+    }
+
+    @Override
+    protected void beforeChat(Form f) {
+        show();
+        ParseObject chat = (ParseObject) data.get("chat");
+        dataList = chat.getList("data");
+
+
+        if (anInt < dataList.size() && dataList.get(anInt).get("owner").toString().equals("him")) {
+            findSend().setHidden(true);
+        }
+        UITimer timer = new UITimer(new Runnable() {
+            @Override
+            public void run() {
+                if (anInt < dataList.size()) {
+                    if (dataList.get(anInt).get("owner").toString().equals("him")) {
+                        findSend().setHidden(true);
+                        Label label = new Label(dataList.get(anInt).get("message").toString());
+
+                        label.setUIID(dataList.get(anInt).get("owner").toString());
+                        if (dataList.get(anInt).get("icon") != null) {
+                            EncodedImage placeholder = EncodedImage.createFromImage(StateMachine.this.fetchResourceFile().getImage("placeholder.jpg"), false);
+                            String url = "http://env-3406900.mircloud.host/parse/files/myAppId/" + ((ParseFile) dataList.get(anInt).get("icon")).getName();
+                            label.setIcon(URLImage.createToStorage(placeholder, url.substring(url.lastIndexOf("/") + 1), url));
+                        }
+
+                        StateMachine.this.findMessages().add(label);
+                        anInt++;
+                        if (anInt == dataList.size() || dataList.get(anInt).get("owner").toString().equals("you")) {
+                            findSend().setHidden(false);
+                        }
+                        f.repaint();
+                    }
+                } else {
+                    if (findSend().isHidden()) {
+                        findSend().setHidden(false);
+                        f.repaint();
+                    }
+                }
+            }
+        });
+        timer.schedule(1000, true, f);
+
         hide();
     }
 
@@ -185,11 +184,16 @@ public class StateMachine extends StateMachineBase {
     protected void beforeHome(Form f) {
         show();
         try {
-            ParseQuery<ParseObject> query = ParseQuery.getQuery("StoryUser");
-            query.include("story");
-            query.whereEqualTo("user", ParseUser.getCurrent());
-            List<ParseObject> results = query.find();
-
+            List<ParseObject> results;
+            if (data.get("homeResults") == null) {
+                ParseQuery<ParseObject> query = ParseQuery.getQuery("StoryUser");
+                query.include("story");
+                query.whereEqualTo("user", ParseUser.getCurrent());
+                results = query.find();
+                data.put("homeResults", results);
+            } else {
+                results = (List<ParseObject>) data.get("homeResults");
+            }
             ArrayList<Map<String, Object>> d = new ArrayList<>();
 
             for (int i = 0; i < results.size(); i++) {
@@ -216,7 +220,7 @@ public class StateMachine extends StateMachineBase {
 
         fab.bindFabToContainer(f.getContentPane());
 
-hide();
+        hide();
     }
 
     @Override
@@ -256,7 +260,7 @@ hide();
 
     private void show() {
 //        if (data.get("dialog") == null)
-            data.put("dialog", new InfiniteProgress().showInifiniteBlocking());
+        data.put("dialog", new InfiniteProgress().showInifiniteBlocking());
 //        else
 //            ((Dialog) data.get("dialog")).show();
     }
@@ -287,11 +291,6 @@ hide();
         hide();
     }
 
-    @Override
-    protected void onHome_CreateAction(Component c, ActionEvent event) {
-
-
-    }
 
     @Override
     protected void onCreate_SaveAction(Component c, ActionEvent event) {
@@ -385,6 +384,7 @@ hide();
                 byte[] ba = out.toByteArray();
                 ParseFile file = new ParseFile(ParseUser.getCurrent().getUsername() + ".jpg", ba, "image/jpeg");
                 findMessages().add(label);
+
                 findMessages().getParent().repaint();
 
                 file.save();
