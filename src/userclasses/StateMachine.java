@@ -156,6 +156,7 @@ public class StateMachine extends StateMachineBase {
 
     @Override
     protected void beforeChat(Form f) {
+        show();
         ParseObject chat = (ParseObject) data.get("chat");
         dataList = chat.getList("data");
         for (anInt = 0; anInt < dataList.size(); anInt++) {
@@ -177,10 +178,12 @@ public class StateMachine extends StateMachineBase {
 
         }
         f.repaint();
+        hide();
     }
 
     @Override
     protected void beforeHome(Form f) {
+        show();
         try {
             ParseQuery<ParseObject> query = ParseQuery.getQuery("StoryUser");
             query.include("story");
@@ -213,7 +216,7 @@ public class StateMachine extends StateMachineBase {
 
         fab.bindFabToContainer(f.getContentPane());
 
-
+hide();
     }
 
     @Override
@@ -260,6 +263,7 @@ public class StateMachine extends StateMachineBase {
 
     @Override
     protected void beforeAdd(Form f) {
+        show();
         try {
             ParseQuery<ParseObject> query = ParseQuery.getQuery("Story");
             query.whereNotContainedIn("objectId", (List<ParseObject>) data.get("conversitons"));
@@ -280,6 +284,7 @@ public class StateMachine extends StateMachineBase {
         } catch (ParseException e) {
             e.printStackTrace();
         }
+        hide();
     }
 
     @Override
