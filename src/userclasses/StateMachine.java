@@ -99,11 +99,13 @@ public class StateMachine extends StateMachineBase {
     protected void onCreateHome() {
 
     }
-    int anInt=0;
+
+    int anInt = 0;
     List<HashMap> dataList;
+
     @Override
     protected void onChat_SendAction(Component c, ActionEvent event) {
-        if(anInt<dataList.size()) {
+        if (anInt < dataList.size()) {
             Label label = new Label(dataList.get(anInt).get("message").toString());
 
             label.setUIID(dataList.get(anInt).get("owner").toString());
@@ -139,7 +141,7 @@ public class StateMachine extends StateMachineBase {
 
 
             findMessages().getParent().repaint();
-        }else {
+        } else {
             ToastBar.showErrorMessage("The end");
         }
     }
@@ -160,7 +162,7 @@ public class StateMachine extends StateMachineBase {
                 }
 
                 findMessages().add(label);
-            }else{
+            } else {
 
                 break;
             }
@@ -200,15 +202,21 @@ public class StateMachine extends StateMachineBase {
     protected void onAdd_ResultsAction(Component c, ActionEvent event) {
         try {
             Map<String, Object> at = (Map<String, Object>) findResults().getModel().getItemAt(findResults().getSelectedIndex());
+            ParseObject story = (ParseObject) at.get("object");
 
-            data.put("chat", at.get("object"));
-            ParseObject object = ParseObject.create("StoryUser");
-            ParseObject object1 = (ParseObject) at.get("object");
-            object.put("story", object1);
-            object.put("user", ParseUser.getCurrent());
+            ParseQuery<ParseObject> query = ParseQuery.getQuery("StoryUser");
+            query.whereEqualTo("user", ParseUser.getCurrent());
+            query.whereEqualTo("story", story);
+            List<ParseObject> results = query.find();
 
-            object.save();
+            if (results.size() == 0) {
+                ParseObject object = ParseObject.create("StoryUser");
+                object.put("story", story);
+                object.put("user", ParseUser.getCurrent());
+                object.save();
+            }
 
+            data.put("chat", story);
             showForm("Chat", null);
         } catch (ParseException e) {
             e.printStackTrace();
