@@ -2,13 +2,13 @@
 
 <component type="Form" name="Main" cloudDestinationProperty="Login" layout="FlowLayout" flowLayoutFillRows="false" flowLayoutAlign="4" flowLayoutValign="4" title="Login" cyclicFocus="true" >
   <component type="Container" name="Container" cloudDestinationProperty="Container" layout="BoxLayout" boxLayoutAxis="Y" >
-    <component type="TextField" name="Username" cloudBoundProperty="text" cloudDestinationProperty="Username" text="aaaa" hint="Username" >
+    <component type="TextField" name="Username" cloudBoundProperty="text" cloudDestinationProperty="Username" uiid="ButtonGroupFirst" scrollVisible="true" text="aaaa" hint="Username" >
     </component>
-    <component type="TextField" name="Password" cloudBoundProperty="text" cloudDestinationProperty="Password" text="aaaa" hint="Password" >
+    <component type="TextField" name="Password" cloudBoundProperty="text" cloudDestinationProperty="Password" uiid="ButtonGroupLast" text="aaaa" hint="Password" >
     </component>
-    <component type="Button" name="Login" cloudDestinationProperty="Login" text="Login" >
+    <component type="Button" name="Login" cloudDestinationProperty="Login" uiid="ButtonGroupFirst" text="Login" >
     </component>
-    <component type="Button" name="Singup" cloudDestinationProperty="Singup" commandName="Singup" commandId="2" commandAction="Singup" commandBack="false" text="Singup" >
+    <component type="Button" name="Singup" cloudDestinationProperty="Singup" commandName="Singup" commandId="2" commandAction="Singup" commandBack="false" uiid="ButtonGroupLast" text="Singup" >
     </component>
   </component>
 </component>

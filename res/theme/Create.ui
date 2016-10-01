@@ -4,24 +4,24 @@
   <component type="Container" name="Container1" cloudDestinationProperty="Container1" layout="BoxLayout" boxLayoutAxis="Y" >
     <layoutConstraint value="South" />
     <component type="Container" name="Container2" cloudDestinationProperty="Container2" layout="GridLayout" gridLayoutRows="1" gridLayoutColumns="2" >
-      <component type="TextField" name="You" cloudBoundProperty="text" cloudDestinationProperty="You" text="" hint="You" >
+      <component type="TextField" name="You" cloudBoundProperty="text" cloudDestinationProperty="You" uiid="ButtonGroupFirst" text="" hint="You" >
       </component>
-      <component type="Button" name="YouPic" cloudDestinationProperty="YouPic" text="send pic" >
+      <component type="Button" name="YouPic" cloudDestinationProperty="YouPic" uiid="ButtonGroupFirst" text="send pic" >
       </component>
     </component>
     <component type="Container" name="Container" cloudDestinationProperty="Container" layout="GridLayout" gridLayoutRows="1" gridLayoutColumns="2" >
-      <component type="TextField" name="Him" cloudBoundProperty="text" cloudDestinationProperty="Him" text="" hint="Him" >
+      <component type="TextField" name="Him" cloudBoundProperty="text" cloudDestinationProperty="Him" uiid="ButtonGroupLast" text="" hint="Him" >
       </component>
-      <component type="Button" name="HimPic" cloudDestinationProperty="HimPic" text="send pic" >
+      <component type="Button" name="HimPic" cloudDestinationProperty="HimPic" uiid="ButtonGroupLast" text="send pic" >
       </component>
     </component>
-    <component type="Button" name="Send" cloudDestinationProperty="Send" text="Send" >
+    <component type="Button" name="Send" cloudDestinationProperty="Send" uiid="ButtonGroupOnly" text="Send" >
     </component>
   </component>
   <component type="Container" name="Messages" cloudDestinationProperty="Messages" scrollableY="true" layout="BoxLayout" boxLayoutAxis="Y" >
     <layoutConstraint value="Center" />
   </component>
-  <component type="Button" name="Save" cloudDestinationProperty="Save" text="Save" >
+  <component type="Button" name="Save" cloudDestinationProperty="Save" uiid="ButtonGroupOnly" text="Save" >
     <layoutConstraint value="North" />
   </component>
 </component>

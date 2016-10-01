@@ -166,6 +166,69 @@
     <image name="GroupElementOnly.sel#borderTop:1" type="multi"  />
     <image name="GroupElementOnly.sel#borderTopL:1" type="multi"  />
     <image name="GroupElementOnly.sel#borderTopR:1" type="multi"  />
+    <image name="him.borderBottom_1.png" type="multi"  />
+    <image name="him.borderBottom_2.png" type="multi"  />
+    <image name="him.borderBottom_3.png" type="multi"  />
+    <image name="him.borderBottom_4.png" type="multi"  />
+    <image name="him.borderBottom_5.png" type="multi"  />
+    <image name="him.borderBottom_6.png" type="multi"  />
+    <image name="him.borderBottom_7.png" type="multi"  />
+    <image name="him.borderBottomL_1.png" type="multi"  />
+    <image name="him.borderBottomL_2.png" type="multi"  />
+    <image name="him.borderBottomL_3.png" type="multi"  />
+    <image name="him.borderBottomL_4.png" type="multi"  />
+    <image name="him.borderBottomL_5.png" type="multi"  />
+    <image name="him.borderBottomL_6.png" type="multi"  />
+    <image name="him.borderBottomL_7.png" type="multi"  />
+    <image name="him.borderBottomR_1.png" type="multi"  />
+    <image name="him.borderBottomR_2.png" type="multi"  />
+    <image name="him.borderBottomR_3.png" type="multi"  />
+    <image name="him.borderBottomR_4.png" type="multi"  />
+    <image name="him.borderBottomR_5.png" type="multi"  />
+    <image name="him.borderBottomR_6.png" type="multi"  />
+    <image name="him.borderBottomR_7.png" type="multi"  />
+    <image name="him.borderCenter_1.png" type="multi"  />
+    <image name="him.borderCenter_2.png" type="multi"  />
+    <image name="him.borderCenter_3.png" type="multi"  />
+    <image name="him.borderCenter_4.png" type="multi"  />
+    <image name="him.borderCenter_5.png" type="multi"  />
+    <image name="him.borderCenter_6.png" type="multi"  />
+    <image name="him.borderCenter_7.png" type="multi"  />
+    <image name="him.borderLeft_1.png" type="multi"  />
+    <image name="him.borderLeft_2.png" type="multi"  />
+    <image name="him.borderLeft_3.png" type="multi"  />
+    <image name="him.borderLeft_4.png" type="multi"  />
+    <image name="him.borderLeft_5.png" type="multi"  />
+    <image name="him.borderLeft_6.png" type="multi"  />
+    <image name="him.borderLeft_7.png" type="multi"  />
+    <image name="him.borderRight_1.png" type="multi"  />
+    <image name="him.borderRight_2.png" type="multi"  />
+    <image name="him.borderRight_3.png" type="multi"  />
+    <image name="him.borderRight_4.png" type="multi"  />
+    <image name="him.borderRight_5.png" type="multi"  />
+    <image name="him.borderRight_6.png" type="multi"  />
+    <image name="him.borderRight_7.png" type="multi"  />
+    <image name="him.borderTop_1.png" type="multi"  />
+    <image name="him.borderTop_2.png" type="multi"  />
+    <image name="him.borderTop_3.png" type="multi"  />
+    <image name="him.borderTop_4.png" type="multi"  />
+    <image name="him.borderTop_5.png" type="multi"  />
+    <image name="him.borderTop_6.png" type="multi"  />
+    <image name="him.borderTop_7.png" type="multi"  />
+    <image name="him.borderTopL_1.png" type="multi"  />
+    <image name="him.borderTopL_2.png" type="multi"  />
+    <image name="him.borderTopL_3.png" type="multi"  />
+    <image name="him.borderTopL_4.png" type="multi"  />
+    <image name="him.borderTopL_5.png" type="multi"  />
+    <image name="him.borderTopL_6.png" type="multi"  />
+    <image name="him.borderTopL_7.png" type="multi"  />
+    <image name="him.borderTopR_1.png" type="multi"  />
+    <image name="him.borderTopR_2.png" type="multi"  />
+    <image name="him.borderTopR_3.png" type="multi"  />
+    <image name="him.borderTopR_4.png" type="multi"  />
+    <image name="him.borderTopR_5.png" type="multi"  />
+    <image name="him.borderTopR_6.png" type="multi"  />
+    <image name="him.borderTopR_7.png" type="multi"  />
     <ui name="Home" />
     <theme name="iOS7">
         <val key="@ComponentGroupBool" value="true" />
@@ -587,7 +650,15 @@
         <val key="fgColor" value="0" />
         <font key="font" type="system" face="0" style="1" size="0" />
         <val key="him.align" value="1" />
-        <val key="him.fgColor" value="ff" />
+        <border key="him.border" type="image" i1="him.borderTop_7.png" i2="him.borderBottom_7.png" i3="him.borderLeft_7.png" i4="him.borderRight_7.png" i5="him.borderTopL_7.png" i6="him.borderTopR_7.png" i7="him.borderBottomL_7.png" i8="him.borderBottomR_7.png" i9="him.borderCenter_7.png" />
+        <val key="him.dis#derive" value="him" />
+        <val key="him.fgColor" value="ffffff" />
+        <val key="him.marUnit" value="2,2,2,2" />
+        <val key="him.margin" value="1,1,1,1" />
+        <val key="him.padUnit" value="2,2,2,2" />
+        <val key="him.padding" value="2,2,2,2" />
+        <val key="him.press#derive" value="him" />
+        <val key="him.sel#derive" value="him" />
         <val key="padUnit" value="2,2,2,2" />
         <val key="padding" value="1,1,1,1" />
         <val key="press#padUnit" value="2,2,2,2" />
@@ -597,249 +668,19 @@
         <val key="sel#transparency" value="0" />
         <val key="transparency" value="0" />
         <val key="you.align" value="3" />
-        <val key="you.fgColor" value="ff" />
+        <border key="you.border" type="image" i1="him.borderTop_6.png" i2="him.borderBottom_6.png" i3="him.borderLeft_6.png" i4="him.borderRight_6.png" i5="him.borderTopL_6.png" i6="him.borderTopR_6.png" i7="him.borderBottomL_6.png" i8="him.borderBottomR_6.png" i9="him.borderCenter_6.png" />
+        <val key="you.dis#derive" value="you" />
+        <val key="you.fgColor" value="ffffff" />
+        <val key="you.marUnit" value="2,2,2,2" />
+        <val key="you.margin" value="1,1,1,1" />
+        <val key="you.padUnit" value="2,2,2,2" />
+        <val key="you.padding" value="1,1,1,1" />
+        <val key="you.press#derive" value="you" />
+        <val key="you.sel#derive" value="you" />
     </theme>
     <image name="ios_switch_mask.png" type="multi"  />
     <image name="ios_switch_off.png" type="multi"  />
     <image name="ios_switch_on.png" type="multi"  />
     <image name="ListRenderer.sel#border:1"  />
     <image name="ListRenderer.sel#border:2"  />
-    <image name="ListRenderer.sel#border:3"  />
-    <image name="ListRenderer.sel#border:4"  />
-    <image name="ListRenderer.sel#border:5"  />
-    <image name="ListRenderer.sel#border:6"  />
-    <image name="ListRenderer.sel#border:7"  />
-    <image name="ListRenderer.sel#border:8"  />
-    <image name="ListRenderer.sel#border:9"  />
-    <ui name="Main" />
-    <image name="Menu.borderBottom_2.png" type="multi"  />
-    <image name="Menu.borderBottomL_2.png" type="multi"  />
-    <image name="Menu.borderBottomR_2.png" type="multi"  />
-    <image name="Menu.borderCenter_2.png" type="multi"  />
-    <image name="Menu.borderLeft_2.png" type="multi"  />
-    <image name="Menu.borderRight_2.png" type="multi"  />
-    <image name="Menu.borderTop_2.png" type="multi"  />
-    <image name="Menu.borderTopL_2.png" type="multi"  />
-    <image name="Menu.borderTopR_2.png" type="multi"  />
-    <image name="OKGR.borderBottom_1.png" type="multi"  />
-    <image name="OKGR.borderBottomL_1.png" type="multi"  />
-    <image name="OKGR.borderBottomR_1.png" type="multi"  />
-    <image name="OKGR.borderCenter_1.png" type="multi"  />
-    <image name="OKGR.borderLeft_1.png" type="multi"  />
-    <image name="OKGR.borderRight_1.png" type="multi"  />
-    <image name="OKGR.borderTop_1.png" type="multi"  />
-    <image name="OKGR.borderTopL_1.png" type="multi"  />
-    <image name="OKGR.borderTopR_1.png" type="multi"  />
-    <image name="placeholder.jpg" type="multi"  />
-    <image name="PlayMedia.png" type="multi"  />
-    <image name="Popup_arrow.png" type="multi"  />
-    <image name="Popup_arrow_bottom.png" type="multi"  />
-    <image name="Popup_arrow_left.png" type="multi"  />
-    <image name="Popup_arrow_right.png" type="multi"  />
-    <image name="PopupDialog.borderBottom_2.png" type="multi"  />
-    <image name="PopupDialog.borderBottomL_2.png" type="multi"  />
-    <image name="PopupDialog.borderBottomR_2.png" type="multi"  />
-    <image name="PopupDialog.borderCenter_2.png" type="multi"  />
-    <image name="PopupDialog.borderLeft_2.png" type="multi"  />
-    <image name="PopupDialog.borderRight_2.png" type="multi"  />
-    <image name="PopupDialog.borderTop_2.png" type="multi"  />
-    <image name="PopupDialog.borderTopL_2.png" type="multi"  />
-    <image name="PopupDialog.borderTopR_2.png" type="multi"  />
-    <image name="PopupDialogTitle.borderBottom_1.png" type="multi"  />
-    <image name="PopupDialogTitle.borderBottomL_1.png" type="multi"  />
-    <image name="PopupDialogTitle.borderBottomR_1.png" type="multi"  />
-    <image name="PopupDialogTitle.borderCenter_1.png" type="multi"  />
-    <image name="PopupDialogTitle.borderLeft_1.png" type="multi"  />
-    <image name="PopupDialogTitle.borderRight_1.png" type="multi"  />
-    <image name="PopupDialogTitle.borderTop_1.png" type="multi"  />
-    <image name="PopupDialogTitle.borderTopL_1.png" type="multi"  />
-    <image name="PopupDialogTitle.borderTopR_1.png" type="multi"  />
-    <image name="round.png" type="multi"  />
-    <ui name="Singup" />
-    <image name="sliderBlueCenter.png" type="multi"  />
-    <image name="sliderBlueLeft.png" type="multi"  />
-    <image name="sliderBlueRight.png" type="multi"  />
-    <image name="sliderEmpty.png" type="multi"  />
-    <image name="sliderEmptyLeft.png" type="multi"  />
-    <image name="sliderEmptyRight.png" type="multi"  />
-    <image name="SpinnerOverlay.borderBottom:1" type="multi"  />
-    <image name="SpinnerOverlay.borderBottomL:1" type="multi"  />
-    <image name="SpinnerOverlay.borderBottomR:1" type="multi"  />
-    <image name="SpinnerOverlay.borderCenter:1" type="multi"  />
-    <image name="SpinnerOverlay.borderLeft:1" type="multi"  />
-    <image name="SpinnerOverlay.borderRight:1" type="multi"  />
-    <image name="SpinnerOverlay.borderTop:1" type="multi"  />
-    <image name="SpinnerOverlay.borderTopL:1" type="multi"  />
-    <image name="SpinnerOverlay.borderTopR:1" type="multi"  />
-    <image name="SpinnerSeparator.png"  />
-    <image name="switch_mask.png" type="multi"  />
-    <image name="switch_off.png" type="multi"  />
-    <image name="switch_on.png" type="multi"  />
-    <image name="Tab.borderBottom:1" type="multi"  />
-    <image name="Tab.borderBottomL:1" type="multi"  />
-    <image name="Tab.borderBottomR:1" type="multi"  />
-    <image name="Tab.borderCenter:1" type="multi"  />
-    <image name="Tab.borderLeft:1" type="multi"  />
-    <image name="Tab.borderRight:1" type="multi"  />
-    <image name="Tab.borderTop:1" type="multi"  />
-    <image name="Tab.borderTopL:1" type="multi"  />
-    <image name="Tab.borderTopR:1" type="multi"  />
-    <image name="Tab.sel#borderBottom:1" type="multi"  />
-    <image name="Tab.sel#borderBottomL:1" type="multi"  />
-    <image name="Tab.sel#borderBottomR:1" type="multi"  />
-    <image name="Tab.sel#borderCenter:1" type="multi"  />
-    <image name="Tab.sel#borderLeft:1" type="multi"  />
-    <image name="Tab.sel#borderRight:1" type="multi"  />
-    <image name="Tab.sel#borderTop:1" type="multi"  />
-    <image name="Tab.sel#borderTopL:1" type="multi"  />
-    <image name="Tab.sel#borderTopR:1" type="multi"  />
-    <image name="tab_selected_icon.png" type="multi"  />
-    <image name="tab_unselected_icon.png" type="multi"  />
-    <image name="TabsContainer.borderBottom_1.png" type="multi"  />
-    <image name="TabsContainer.borderBottomL_1.png" type="multi"  />
-    <image name="TabsContainer.borderBottomR_1.png" type="multi"  />
-    <image name="TabsContainer.borderCenter_1.png" type="multi"  />
-    <image name="TabsContainer.borderLeft_1.png" type="multi"  />
-    <image name="TabsContainer.borderRight_1.png" type="multi"  />
-    <image name="TabsContainer.borderTop_1.png" type="multi"  />
-    <image name="TabsContainer.borderTopL_1.png" type="multi"  />
-    <image name="TabsContainer.borderTopR_1.png" type="multi"  />
-    <image name="TextField.sel#border:1"  />
-    <image name="TextField.sel#border:2"  />
-    <image name="TextField.sel#border:3"  />
-    <image name="TextField.sel#border:4"  />
-    <image name="TextField.sel#border:5"  />
-    <image name="TextField.sel#border:6"  />
-    <image name="TextField.sel#border:7"  />
-    <image name="TextField.sel#border:8"  />
-    <image name="TextField.sel#border:9"  />
-    <image name="title_command_pressed_c.png" type="multi"  />
-    <image name="title_command_pressed_l.png" type="multi"  />
-    <image name="title_command_pressed_r.png" type="multi"  />
-    <image name="TitleArea.borderBottom_1.png" type="multi"  />
-    <image name="TitleArea.borderBottom_2.png" type="multi"  />
-    <image name="TitleArea.borderBottomL_1.png" type="multi"  />
-    <image name="TitleArea.borderBottomL_2.png" type="multi"  />
-    <image name="TitleArea.borderBottomR_1.png" type="multi"  />
-    <image name="TitleArea.borderBottomR_2.png" type="multi"  />
-    <image name="TitleArea.borderCenter_1.png" type="multi"  />
-    <image name="TitleArea.borderCenter_2.png" type="multi"  />
-    <image name="TitleArea.borderLeft_1.png" type="multi"  />
-    <image name="TitleArea.borderLeft_2.png" type="multi"  />
-    <image name="TitleArea.borderRight_1.png" type="multi"  />
-    <image name="TitleArea.borderRight_2.png" type="multi"  />
-    <image name="TitleArea.borderTop_1.png" type="multi"  />
-    <image name="TitleArea.borderTop_2.png" type="multi"  />
-    <image name="TitleArea.borderTopL_1.png" type="multi"  />
-    <image name="TitleArea.borderTopL_2.png" type="multi"  />
-    <image name="TitleArea.borderTopR_1.png" type="multi"  />
-    <image name="TitleArea.borderTopR_2.png" type="multi"  />
-    <image name="ToggleButton.borderBottom:1" type="multi"  />
-    <image name="ToggleButton.borderBottom_1.png" type="multi"  />
-    <image name="ToggleButton.borderBottomL:1" type="multi"  />
-    <image name="ToggleButton.borderBottomL_1.png" type="multi"  />
-    <image name="ToggleButton.borderBottomR:1" type="multi"  />
-    <image name="ToggleButton.borderBottomR_1.png" type="multi"  />
-    <image name="ToggleButton.borderCenter:1" type="multi"  />
-    <image name="ToggleButton.borderCenter_1.png" type="multi"  />
-    <image name="ToggleButton.borderLeft:1" type="multi"  />
-    <image name="ToggleButton.borderLeft_1.png" type="multi"  />
-    <image name="ToggleButton.borderRight:1" type="multi"  />
-    <image name="ToggleButton.borderRight_1.png" type="multi"  />
-    <image name="ToggleButton.borderTop:1" type="multi"  />
-    <image name="ToggleButton.borderTop_1.png" type="multi"  />
-    <image name="ToggleButton.borderTopL:1" type="multi"  />
-    <image name="ToggleButton.borderTopL_1.png" type="multi"  />
-    <image name="ToggleButton.borderTopR:1" type="multi"  />
-    <image name="ToggleButton.borderTopR_1.png" type="multi"  />
-    <image name="ToggleButton.sel#borderBottom:1" type="multi"  />
-    <image name="ToggleButton.sel#borderBottom_1.png"  />
-    <image name="ToggleButton.sel#borderBottomL:1" type="multi"  />
-    <image name="ToggleButton.sel#borderBottomL_1.png"  />
-    <image name="ToggleButton.sel#borderBottomR:1" type="multi"  />
-    <image name="ToggleButton.sel#borderBottomR_1.png"  />
-    <image name="ToggleButton.sel#borderCenter:1" type="multi"  />
-    <image name="ToggleButton.sel#borderCenter_1.png"  />
-    <image name="ToggleButton.sel#borderLeft:1" type="multi"  />
-    <image name="ToggleButton.sel#borderLeft_1.png"  />
-    <image name="ToggleButton.sel#borderRight:1" type="multi"  />
-    <image name="ToggleButton.sel#borderRight_1.png"  />
-    <image name="ToggleButton.sel#borderTop:1" type="multi"  />
-    <image name="ToggleButton.sel#borderTop_1.png"  />
-    <image name="ToggleButton.sel#borderTopL:1" type="multi"  />
-    <image name="ToggleButton.sel#borderTopL_1.png"  />
-    <image name="ToggleButton.sel#borderTopR:1" type="multi"  />
-    <image name="ToggleButton.sel#borderTopR_1.png"  />
-    <image name="ToggleButtonFirst.borderBottom:1" type="multi"  />
-    <image name="ToggleButtonFirst.borderBottom_1.png" type="multi"  />
-    <image name="ToggleButtonFirst.borderBottomL:1" type="multi"  />
-    <image name="ToggleButtonFirst.borderBottomL_1.png" type="multi"  />
-    <image name="ToggleButtonFirst.borderBottomR:1" type="multi"  />
-    <image name="ToggleButtonFirst.borderBottomR_1.png" type="multi"  />
-    <image name="ToggleButtonFirst.borderCenter:1" type="multi"  />
-    <image name="ToggleButtonFirst.borderCenter_1.png" type="multi"  />
-    <image name="ToggleButtonFirst.borderLeft:1" type="multi"  />
-    <image name="ToggleButtonFirst.borderLeft_1.png" type="multi"  />
-    <image name="ToggleButtonFirst.borderRight:1" type="multi"  />
-    <image name="ToggleButtonFirst.borderRight_1.png" type="multi"  />
-    <image name="ToggleButtonFirst.borderTop:1" type="multi"  />
-    <image name="ToggleButtonFirst.borderTop_1.png" type="multi"  />
-    <image name="ToggleButtonFirst.borderTopL:1" type="multi"  />
-    <image name="ToggleButtonFirst.borderTopL_1.png" type="multi"  />
-    <image name="ToggleButtonFirst.borderTopR:1" type="multi"  />
-    <image name="ToggleButtonFirst.borderTopR_1.png" type="multi"  />
-    <image name="ToggleButtonFirst.sel#borderBottom:1" type="multi"  />
-    <image name="ToggleButtonFirst.sel#borderBottom_1.png" type="multi"  />
-    <image name="ToggleButtonFirst.sel#borderBottomL:1" type="multi"  />
-    <image name="ToggleButtonFirst.sel#borderBottomL_1.png" type="multi"  />
-    <image name="ToggleButtonFirst.sel#borderBottomR:1" type="multi"  />
-    <image name="ToggleButtonFirst.sel#borderBottomR_1.png" type="multi"  />
-    <image name="ToggleButtonFirst.sel#borderCenter:1" type="multi"  />
-    <image name="ToggleButtonFirst.sel#borderCenter_1.png" type="multi"  />
-    <image name="ToggleButtonFirst.sel#borderLeft:1" type="multi"  />
-    <image name="ToggleButtonFirst.sel#borderLeft_1.png" type="multi"  />
-    <image name="ToggleButtonFirst.sel#borderRight:1" type="multi"  />
-    <image name="ToggleButtonFirst.sel#borderRight_1.png" type="multi"  />
-    <image name="ToggleButtonFirst.sel#borderTop:1" type="multi"  />
-    <image name="ToggleButtonFirst.sel#borderTop_1.png" type="multi"  />
-    <image name="ToggleButtonFirst.sel#borderTopL:1" type="multi"  />
-    <image name="ToggleButtonFirst.sel#borderTopL_1.png" type="multi"  />
-    <image name="ToggleButtonFirst.sel#borderTopR:1" type="multi"  />
-    <image name="ToggleButtonFirst.sel#borderTopR_1.png" type="multi"  />
-    <image name="ToggleButtonLast.borderBottom:1" type="multi"  />
-    <image name="ToggleButtonLast.borderBottom_1.png" type="multi"  />
-    <image name="ToggleButtonLast.borderBottomL:1" type="multi"  />
-    <image name="ToggleButtonLast.borderBottomL_1.png" type="multi"  />
-    <image name="ToggleButtonLast.borderBottomR:1" type="multi"  />
-    <image name="ToggleButtonLast.borderBottomR_1.png" type="multi"  />
-    <image name="ToggleButtonLast.borderCenter:1" type="multi"  />
-    <image name="ToggleButtonLast.borderCenter_1.png" type="multi"  />
-    <image name="ToggleButtonLast.borderLeft:1" type="multi"  />
-    <image name="ToggleButtonLast.borderLeft_1.png" type="multi"  />
-    <image name="ToggleButtonLast.borderRight:1" type="multi"  />
-    <image name="ToggleButtonLast.borderRight_1.png" type="multi"  />
-    <image name="ToggleButtonLast.borderTop:1" type="multi"  />
-    <image name="ToggleButtonLast.borderTop_1.png" type="multi"  />
-    <image name="ToggleButtonLast.borderTopL:1" type="multi"  />
-    <image name="ToggleButtonLast.borderTopL_1.png" type="multi"  />
-    <image name="ToggleButtonLast.borderTopR:1" type="multi"  />
-    <image name="ToggleButtonLast.borderTopR_1.png" type="multi"  />
-    <image name="ToggleButtonLast.sel#borderBottom:1" type="multi"  />
-    <image name="ToggleButtonLast.sel#borderBottom_1.png" type="multi"  />
-    <image name="ToggleButtonLast.sel#borderBottomL:1" type="multi"  />
-    <image name="ToggleButtonLast.sel#borderBottomL_1.png" type="multi"  />
-    <image name="ToggleButtonLast.sel#borderBottomR:1" type="multi"  />
-    <image name="ToggleButtonLast.sel#borderBottomR_1.png" type="multi"  />
-    <image name="ToggleButtonLast.sel#borderCenter:1" type="multi"  />
-    <image name="ToggleButtonLast.sel#borderCenter_1.png" type="multi"  />
-    <image name="ToggleButtonLast.sel#borderLeft:1" type="multi"  />
-    <image name="ToggleButtonLast.sel#borderLeft_1.png" type="multi"  />
-    <image name="ToggleButtonLast.sel#borderRight:1" type="multi"  />
-    <image name="ToggleButtonLast.sel#borderRight_1.png" type="multi"  />
-    <image name="ToggleButtonLast.sel#borderTop:1" type="multi"  />
-    <image name="ToggleButtonLast.sel#borderTop_1.png" type="multi"  />
-    <image name="ToggleButtonLast.sel#borderTopL:1" type="multi"  />
-    <image name="ToggleButtonLast.sel#borderTopL_1.png" type="multi"  />
-    <image name="ToggleButtonLast.sel#borderTopR:1" type="multi"  />
-    <image name="ToggleButtonLast.sel#borderTopR_1.png" type="multi"  />
-</resource>
+    <image name="ListR
