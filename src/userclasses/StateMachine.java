@@ -13,6 +13,7 @@ import com.codename1.components.InfiniteProgress;
 import com.codename1.components.ToastBar;
 import com.codename1.ui.*;
 import com.codename1.ui.events.ActionEvent;
+import com.codename1.ui.layouts.BorderLayout;
 import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.list.DefaultListModel;
 import com.codename1.ui.plaf.Style;
@@ -377,7 +378,7 @@ public class StateMachine extends StateMachineBase {
         findCamera().setIcon(FontImage.createMaterial(FontImage.MATERIAL_CAMERA, new Style()));
         findGallery().setIcon(FontImage.createMaterial(FontImage.MATERIAL_PHOTO_LIBRARY, new Style()));
         f.getToolbar().addMaterialCommandToRightBar("", FontImage.MATERIAL_SAVE, evt -> save());
-
+        f.add(BorderLayout.NORTH,new Label("\uD83D\uDE33\uD83D\uDE1C\uD83D\uDE02\uD83D\uDE09\uD83D\uDE0C\uD83D\uDE34\uD83D\uDE2D\uD83D\uDE12\uD83D\uDE2C\uD83D\uDE31\uD83D\uDD25\uD83E\uDD84\uD83E\uDD16\uD83E\uDD84\uD83D\uDD25\uD83D\uDCB0\uD83D\uDCA9\uD83D\uDC40\uD83D\uDD2B\uD83D\uDC81"));
     }
 
 
