@@ -15,6 +15,7 @@ import com.codename1.ui.*;
 import com.codename1.ui.events.ActionEvent;
 import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.list.DefaultListModel;
+import com.codename1.ui.plaf.Style;
 import com.codename1.ui.util.ImageIO;
 import com.codename1.ui.util.Resources;
 import com.codename1.ui.util.UITimer;
@@ -27,6 +28,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static com.codename1.ui.Display.GALLERY_IMAGE;
 
 /**
  * @author Your name here
@@ -292,8 +295,7 @@ public class StateMachine extends StateMachineBase {
     }
 
 
-    @Override
-    protected void onCreate_SaveAction(Component c, ActionEvent event) {
+    private void save() {
         Dialog dialog = new Dialog("Create");
         dialog.setLayout(new BoxLayout(BoxLayout.Y_AXIS));
         TextField name = new TextField("");
@@ -322,83 +324,93 @@ public class StateMachine extends StateMachineBase {
         dialog.show();
     }
 
-    @Override
-    protected void onCreate_SendAction(Component c, ActionEvent event) {
-        if (findYou().getText().length() > 0 && findHim().getText().length() > 0) {
-            findYou().setText("");
-            findHim().setText("");
-        } else if (findYou().getText().length() > 0 || findHim().getText().length() > 0) {
+
+    private void send(String owner) {
+        if (findMessage().getText().length() > 0 || data.get("path") != null) {
             ArrayList<Map<String, Object>> create = (ArrayList<Map<String, Object>>) data.get("create");
             Map<String, Object> map = new HashMap<>();
-            map.put("message", (findYou().getText().length() > 0) ? findYou().getText() : findHim().getText());
-            map.put("owner", (findYou().getText().length() > 0) ? "you" : "him");
-            create.add(map);
-            findYou().setText("");
-            findHim().setText("");
+            Label label = new Label();
 
-            Label label = new Label(map.get("message").toString());
-            label.setUIID(map.get("owner").toString());
+            if (findMessage().getText().length() > 0) {
+                map.put("message", findMessage().getText());
+                label.setText(findMessage().getText());
+                findMessage().setText("");
+            }
+            map.put("owner", owner);
+            label.setUIID(owner);
+
+            if (data.get("path") != null) {
+                try {
+                    label.setIcon(Image.createImage(data.get("path").toString()).scaledWidth(50));
+
+                    ImageIO imgIO = ImageIO.getImageIO();
+                    ByteArrayOutputStream out = new ByteArrayOutputStream();
+                    imgIO.save(label.getIcon(), out, ImageIO.FORMAT_JPEG, 1);
+                    byte[] ba = out.toByteArray();
+                    ParseFile file = new ParseFile(ParseUser.getCurrent().getUsername() + ".jpg", ba, "image/jpeg");
+
+                    file.save();
+
+                    map.put("icon", file);
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                data.remove("path");
+            }
+
+
+            create.add(map);
             findMessages().add(label);
 
             findMessages().getParent().repaint();
             data.put("create", create);
-
         }
-
     }
 
     @Override
     protected void beforeCreate(Form f) {
         data.put("create", new ArrayList<Map<String, Object>>());
+
+        findCamera().setIcon(FontImage.createMaterial(FontImage.MATERIAL_CAMERA, new Style()));
+        findGallery().setIcon(FontImage.createMaterial(FontImage.MATERIAL_PHOTO_LIBRARY, new Style()));
+        f.getToolbar().addMaterialCommandToRightBar("", FontImage.MATERIAL_SAVE, evt -> save());
+
+    }
+
+
+    @Override
+    protected void onCreate_CameraAction(Component c, ActionEvent event) {
+        String photo = Capture.capturePhoto();
+        if (photo != null)
+            data.put("path", photo);
+
+
     }
 
     @Override
-    protected void onCreate_YouPicAction(Component c, ActionEvent event) {
-        pic("you");
-    }
-
-    @Override
-    protected void onCreate_HimPicAction(Component c, ActionEvent event) {
-        pic("him");
-    }
-
-    private void pic(String owner) {
-        String s = Capture.capturePhoto();
-        if (s != null) {
-            ArrayList<Map<String, Object>> create = (ArrayList<Map<String, Object>>) data.get("create");
-            Map<String, Object> map = new HashMap<>();
-            map.put("message", "");
-            map.put("owner", owner);
-            create.add(map);
-            findYou().setText("");
-            findHim().setText("");
-
-            Label label = new Label(map.get("message").toString());
-            label.setUIID(map.get("owner").toString());
+    protected void onCreate_GalleryAction(Component c, ActionEvent event) {
+        Display.getInstance().openGallery(evt -> {
             try {
-                label.setIcon(Image.createImage(s).scaledWidth(50));
-
-                ImageIO imgIO = ImageIO.getImageIO();
-                ByteArrayOutputStream out = new ByteArrayOutputStream();
-                imgIO.save(label.getIcon(), out, ImageIO.FORMAT_JPEG, 1);
-                byte[] ba = out.toByteArray();
-                ParseFile file = new ParseFile(ParseUser.getCurrent().getUsername() + ".jpg", ba, "image/jpeg");
-                findMessages().add(label);
-
-                findMessages().getParent().repaint();
-
-                file.save();
-                map.put("icon", file);
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (ParseException e) {
+                data.put("path", evt.getSource().toString());
+            } catch (Exception e) {
                 e.printStackTrace();
             }
+        }, GALLERY_IMAGE);
+    }
 
+    @Override
+    protected void onCreate_SendYouAction(Component c, ActionEvent event) {
+        send("you");
 
-            data.put("create", create);
-        }
+    }
+
+    @Override
+    protected void onCreate_SendHimAction(Component c, ActionEvent event) {
+
+        send("him");
     }
 
 

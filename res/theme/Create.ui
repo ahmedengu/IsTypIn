@@ -1,27 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<component type="Form" name="Create" cloudDestinationProperty="Create" layout="BorderLayout" borderLayoutAbsoluteCenter="false" title="Create" cyclicFocus="true" >
+<component type="Form" name="Create" cloudDestinationProperty="Create" scrollableY="false" layout="BorderLayout" borderLayoutAbsoluteCenter="false" title="Create" cyclicFocus="true" >
   <component type="Container" name="Container1" cloudDestinationProperty="Container1" layout="BoxLayout" boxLayoutAxis="Y" >
     <layoutConstraint value="South" />
     <component type="Container" name="Container2" cloudDestinationProperty="Container2" layout="GridLayout" gridLayoutRows="1" gridLayoutColumns="2" >
-      <component type="TextField" name="You" cloudBoundProperty="text" cloudDestinationProperty="You" uiid="ButtonGroupFirst" text="" hint="You" >
+      <component type="Container" name="Container3" cloudDestinationProperty="Container3" layout="BoxLayout" boxLayoutAxis="Y" >
+        <component type="TextField" name="Message" cloudBoundProperty="text" cloudDestinationProperty="You" uiid="ButtonGroupFirst" text="" hint="Message" >
+        </component>
+        <component type="Container" name="Container4" cloudDestinationProperty="Container4" layout="GridLayout" gridLayoutRows="1" gridLayoutColumns="2" >
+          <component type="Button" name="Camera" cloudDestinationProperty="YouPic" uiid="ButtonGroupLast" text="" >
+          </component>
+          <component type="Button" name="Gallery" cloudDestinationProperty="Gallery" uiid="ButtonGroupLast" text="" >
+          </component>
+        </component>
       </component>
-      <component type="Button" name="YouPic" cloudDestinationProperty="YouPic" uiid="ButtonGroupFirst" text="send pic" >
+      <component type="Container" name="Container" cloudDestinationProperty="Container" layout="BoxLayout" boxLayoutAxis="Y" >
+        <component type="Button" name="SendYou" cloudDestinationProperty="Send" uiid="ButtonGroupFirst" text="You" >
+        </component>
+        <component type="Button" name="SendHim" cloudDestinationProperty="SendHim" uiid="ButtonGroupLast" text="Him" >
+        </component>
       </component>
-    </component>
-    <component type="Container" name="Container" cloudDestinationProperty="Container" layout="GridLayout" gridLayoutRows="1" gridLayoutColumns="2" >
-      <component type="TextField" name="Him" cloudBoundProperty="text" cloudDestinationProperty="Him" uiid="ButtonGroupLast" text="" hint="Him" >
-      </component>
-      <component type="Button" name="HimPic" cloudDestinationProperty="HimPic" uiid="ButtonGroupLast" text="send pic" >
-      </component>
-    </component>
-    <component type="Button" name="Send" cloudDestinationProperty="Send" uiid="ButtonGroupOnly" text="Send" >
     </component>
   </component>
   <component type="Container" name="Messages" cloudDestinationProperty="Messages" scrollableY="true" layout="BoxLayout" boxLayoutAxis="Y" >
     <layoutConstraint value="Center" />
-  </component>
-  <component type="Button" name="Save" cloudDestinationProperty="Save" uiid="ButtonGroupOnly" text="Save" >
-    <layoutConstraint value="North" />
   </component>
 </component>
