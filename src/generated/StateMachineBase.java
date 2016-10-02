@@ -8,12 +8,10 @@
 package generated;
 
 import com.codename1.ui.*;
-import com.codename1.ui.events.ActionEvent;
-import com.codename1.ui.plaf.UIManager;
-import com.codename1.ui.util.Resources;
-import com.codename1.ui.util.UIBuilder;
-
+import com.codename1.ui.util.*;
+import com.codename1.ui.plaf.*;
 import java.util.Hashtable;
+import com.codename1.ui.events.*;
 
 public abstract class StateMachineBase extends UIBuilder {
     private Container aboutToShowThisContainer;
@@ -264,6 +262,18 @@ public abstract class StateMachineBase extends UIBuilder {
         return cmp;
     }
 
+    public com.codename1.ui.Button findEmoji(Component root) {
+        return (com.codename1.ui.Button)findByName("Emoji", root);
+    }
+
+    public com.codename1.ui.Button findEmoji() {
+        com.codename1.ui.Button cmp = (com.codename1.ui.Button)findByName("Emoji", Display.getInstance().getCurrent());
+        if(cmp == null && aboutToShowThisContainer != null) {
+            cmp = (com.codename1.ui.Button)findByName("Emoji", aboutToShowThisContainer);
+        }
+        return cmp;
+    }
+
     public com.codename1.ui.Button findCamera(Component root) {
         return (com.codename1.ui.Button)findByName("Camera", root);
     }
@@ -384,18 +394,6 @@ public abstract class StateMachineBase extends UIBuilder {
         return cmp;
     }
 
-    public com.codename1.ui.Button findSave(Component root) {
-        return (com.codename1.ui.Button)findByName("Save", root);
-    }
-
-    public com.codename1.ui.Button findSave() {
-        com.codename1.ui.Button cmp = (com.codename1.ui.Button)findByName("Save", Display.getInstance().getCurrent());
-        if(cmp == null && aboutToShowThisContainer != null) {
-            cmp = (com.codename1.ui.Button)findByName("Save", aboutToShowThisContainer);
-        }
-        return cmp;
-    }
-
     public com.codename1.ui.Button findSendHim(Component root) {
         return (com.codename1.ui.Button)findByName("SendHim", root);
     }
@@ -408,13 +406,8 @@ public abstract class StateMachineBase extends UIBuilder {
         return cmp;
     }
 
-    public static final int COMMAND_CreateSave = 3;
     public static final int COMMAND_MainSingup = 2;
     public static final int COMMAND_SingupLogin = 1;
-
-    protected boolean onCreateSave() {
-        return false;
-    }
 
     protected boolean onMainSingup() {
         return false;
@@ -426,13 +419,6 @@ public abstract class StateMachineBase extends UIBuilder {
 
     protected void processCommand(ActionEvent ev, Command cmd) {
         switch(cmd.getId()) {
-            case COMMAND_CreateSave:
-                if(onCreateSave()) {
-                    ev.consume();
-                    return;
-                }
-                break;
-
             case COMMAND_MainSingup:
                 if(onMainSingup()) {
                     ev.consume();
@@ -1102,16 +1088,16 @@ public abstract class StateMachineBase extends UIBuilder {
                 onCreate_GalleryAction(c, event);
                 return;
             }
+            if("Emoji".equals(c.getName())) {
+                onCreate_EmojiAction(c, event);
+                return;
+            }
             if("SendYou".equals(c.getName())) {
                 onCreate_SendYouAction(c, event);
                 return;
             }
             if("SendHim".equals(c.getName())) {
                 onCreate_SendHimAction(c, event);
-                return;
-            }
-            if("Save".equals(c.getName())) {
-                onCreate_SaveAction(c, event);
                 return;
             }
         }
@@ -1182,13 +1168,13 @@ public abstract class StateMachineBase extends UIBuilder {
       protected void onCreate_GalleryAction(Component c, ActionEvent event) {
       }
 
+      protected void onCreate_EmojiAction(Component c, ActionEvent event) {
+      }
+
       protected void onCreate_SendYouAction(Component c, ActionEvent event) {
       }
 
       protected void onCreate_SendHimAction(Component c, ActionEvent event) {
-      }
-
-      protected void onCreate_SaveAction(Component c, ActionEvent event) {
       }
 
       protected void onMain_UsernameAction(Component c, ActionEvent event) {

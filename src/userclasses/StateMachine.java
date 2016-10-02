@@ -13,7 +13,6 @@ import com.codename1.components.InfiniteProgress;
 import com.codename1.components.ToastBar;
 import com.codename1.ui.*;
 import com.codename1.ui.events.ActionEvent;
-import com.codename1.ui.layouts.BorderLayout;
 import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.list.DefaultListModel;
 import com.codename1.ui.plaf.Style;
@@ -377,8 +376,10 @@ public class StateMachine extends StateMachineBase {
 
         findCamera().setIcon(FontImage.createMaterial(FontImage.MATERIAL_CAMERA, new Style()));
         findGallery().setIcon(FontImage.createMaterial(FontImage.MATERIAL_PHOTO_LIBRARY, new Style()));
+        findEmoji().setIcon(FontImage.createMaterial(FontImage.MATERIAL_INSERT_EMOTICON, new Style()));
+
         f.getToolbar().addMaterialCommandToRightBar("", FontImage.MATERIAL_SAVE, evt -> save());
-        f.add(BorderLayout.NORTH,new Label("\uD83D\uDE33\uD83D\uDE1C\uD83D\uDE02\uD83D\uDE09\uD83D\uDE0C\uD83D\uDE34\uD83D\uDE2D\uD83D\uDE12\uD83D\uDE2C\uD83D\uDE31\uD83D\uDD25\uD83E\uDD84\uD83E\uDD16\uD83E\uDD84\uD83D\uDD25\uD83D\uDCB0\uD83D\uDCA9\uD83D\uDC40\uD83D\uDD2B\uD83D\uDC81"));
+
     }
 
 
@@ -415,4 +416,25 @@ public class StateMachine extends StateMachineBase {
     }
 
 
+    @Override
+    protected void onCreate_EmojiAction(Component c, ActionEvent event) {
+        Dialog dialog = new Dialog("Emoji");
+        String emojis[] = {"\uD83D\uDE02", "\uD83D\uDE04", "\uD83D\uDE0D"};
+
+        for (int i = 0; i < emojis.length; i++) {
+            Button cmp = new Button(emojis[i]);
+            cmp.addActionListener(evt -> {
+                dialog.dispose();
+
+                insertEmoji(cmp.getText());
+            });
+            dialog.add(cmp);
+        }
+
+        dialog.show();
+    }
+
+    private void insertEmoji(String e) {
+        findMessage().setText(findMessage().getText() + e);
+    }
 }

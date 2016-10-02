@@ -7,10 +7,12 @@
       <component type="Container" name="Container3" cloudDestinationProperty="Container3" layout="BoxLayout" boxLayoutAxis="Y" >
         <component type="TextField" name="Message" cloudBoundProperty="text" cloudDestinationProperty="You" uiid="ButtonGroupFirst" text="" hint="Message" >
         </component>
-        <component type="Container" name="Container4" cloudDestinationProperty="Container4" layout="GridLayout" gridLayoutRows="1" gridLayoutColumns="2" >
+        <component type="Container" name="Container4" cloudDestinationProperty="Container4" layout="GridLayout" gridLayoutRows="1" gridLayoutColumns="3" >
           <component type="Button" name="Camera" cloudDestinationProperty="YouPic" uiid="ButtonGroupLast" text="" >
           </component>
           <component type="Button" name="Gallery" cloudDestinationProperty="Gallery" uiid="ButtonGroupLast" text="" >
+          </component>
+          <component type="Button" name="Emoji" cloudDestinationProperty="Emoji" uiid="ButtonGroupLast" text="" >
           </component>
         </component>
       </component>
