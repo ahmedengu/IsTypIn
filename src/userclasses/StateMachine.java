@@ -8,12 +8,12 @@
 package userclasses;
 
 import com.codename1.capture.Capture;
-import com.codename1.components.FloatingActionButton;
-import com.codename1.components.InfiniteProgress;
-import com.codename1.components.ToastBar;
+import com.codename1.components.*;
 import com.codename1.ui.*;
 import com.codename1.ui.events.ActionEvent;
+import com.codename1.ui.layouts.BorderLayout;
 import com.codename1.ui.layouts.BoxLayout;
+import com.codename1.ui.layouts.FlowLayout;
 import com.codename1.ui.list.DefaultListModel;
 import com.codename1.ui.plaf.Style;
 import com.codename1.ui.util.ImageIO;
@@ -329,7 +329,7 @@ public class StateMachine extends StateMachineBase {
         if (findMessage().getText().length() > 0 || data.get("path") != null) {
             ArrayList<Map<String, Object>> create = (ArrayList<Map<String, Object>>) data.get("create");
             Map<String, Object> map = new HashMap<>();
-            Label label = new Label();
+            SpanButton label = new SpanButton();
 
             if (findMessage().getText().length() > 0) {
                 map.put("message", findMessage().getText());
@@ -363,9 +363,45 @@ public class StateMachine extends StateMachineBase {
 
 
             create.add(map);
-            findMessages().add(label);
+            label.putClientProperty("map", map);
+            label.addActionListener(evt -> {
+                Dialog dialog = new Dialog();
+                dialog.setLayout(new BoxLayout(BoxLayout.Y_AXIS));
+                Button button = new Button("X");
+                button.addActionListener(evt1 -> dialog.dispose());
+                dialog.add(button);
+                if (label.getIcon() != null) {
+                    ImageViewer viewer = new ImageViewer(label.getIcon());
+                    dialog.add(viewer);
+                }
+                dialog.add(new SpanLabel(label.getText()));
+                Button delete = new Button("delete");
+                delete.addActionListener(evt1 -> {
+                    ArrayList<Map<String, Object>> c = (ArrayList<Map<String, Object>>) data.get("create");
+                    c.remove((label.getClientProperty("map")));
+                    data.put("create", c);
+                    label.getParent().remove();
+                    dialog.dispose();
 
-            findMessages().getParent().repaint();
+                });
+                dialog.add(delete);
+                dialog.show();
+            });
+
+            label.setIconPosition(BorderLayout.NORTH);
+            Container container = new Container();
+            if (owner.equals("him")) {
+                container.setLayout(new FlowLayout(Component.LEFT));
+            } else {
+                container.setLayout(new FlowLayout(Component.RIGHT));
+            }
+            container.addComponent(label);
+            findMessages().addComponent(container);
+
+
+            findMessages().animateLayoutAndWait(300);
+            findMessages().scrollComponentToVisible(container);
+
             data.put("create", create);
         }
     }
@@ -379,6 +415,7 @@ public class StateMachine extends StateMachineBase {
         findEmoji().setIcon(FontImage.createMaterial(FontImage.MATERIAL_INSERT_EMOTICON, new Style()));
 
         f.getToolbar().addMaterialCommandToRightBar("", FontImage.MATERIAL_SAVE, evt -> save());
+        findMessage().setGrowByContent(false);
 
     }
 

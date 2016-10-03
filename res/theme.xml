@@ -173,6 +173,7 @@
     <image name="him.borderBottom_5.png" type="multi"  />
     <image name="him.borderBottom_6.png" type="multi"  />
     <image name="him.borderBottom_7.png" type="multi"  />
+    <image name="him.borderBottom_8.png" type="multi"  />
     <image name="him.borderBottomL_1.png" type="multi"  />
     <image name="him.borderBottomL_2.png" type="multi"  />
     <image name="him.borderBottomL_3.png" type="multi"  />
@@ -180,6 +181,7 @@
     <image name="him.borderBottomL_5.png" type="multi"  />
     <image name="him.borderBottomL_6.png" type="multi"  />
     <image name="him.borderBottomL_7.png" type="multi"  />
+    <image name="him.borderBottomL_8.png" type="multi"  />
     <image name="him.borderBottomR_1.png" type="multi"  />
     <image name="him.borderBottomR_2.png" type="multi"  />
     <image name="him.borderBottomR_3.png" type="multi"  />
@@ -187,6 +189,7 @@
     <image name="him.borderBottomR_5.png" type="multi"  />
     <image name="him.borderBottomR_6.png" type="multi"  />
     <image name="him.borderBottomR_7.png" type="multi"  />
+    <image name="him.borderBottomR_8.png" type="multi"  />
     <image name="him.borderCenter_1.png" type="multi"  />
     <image name="him.borderCenter_2.png" type="multi"  />
     <image name="him.borderCenter_3.png" type="multi"  />
@@ -194,6 +197,7 @@
     <image name="him.borderCenter_5.png" type="multi"  />
     <image name="him.borderCenter_6.png" type="multi"  />
     <image name="him.borderCenter_7.png" type="multi"  />
+    <image name="him.borderCenter_8.png" type="multi"  />
     <image name="him.borderLeft_1.png" type="multi"  />
     <image name="him.borderLeft_2.png" type="multi"  />
     <image name="him.borderLeft_3.png" type="multi"  />
@@ -201,6 +205,7 @@
     <image name="him.borderLeft_5.png" type="multi"  />
     <image name="him.borderLeft_6.png" type="multi"  />
     <image name="him.borderLeft_7.png" type="multi"  />
+    <image name="him.borderLeft_8.png" type="multi"  />
     <image name="him.borderRight_1.png" type="multi"  />
     <image name="him.borderRight_2.png" type="multi"  />
     <image name="him.borderRight_3.png" type="multi"  />
@@ -208,6 +213,7 @@
     <image name="him.borderRight_5.png" type="multi"  />
     <image name="him.borderRight_6.png" type="multi"  />
     <image name="him.borderRight_7.png" type="multi"  />
+    <image name="him.borderRight_8.png" type="multi"  />
     <image name="him.borderTop_1.png" type="multi"  />
     <image name="him.borderTop_2.png" type="multi"  />
     <image name="him.borderTop_3.png" type="multi"  />
@@ -215,6 +221,7 @@
     <image name="him.borderTop_5.png" type="multi"  />
     <image name="him.borderTop_6.png" type="multi"  />
     <image name="him.borderTop_7.png" type="multi"  />
+    <image name="him.borderTop_8.png" type="multi"  />
     <image name="him.borderTopL_1.png" type="multi"  />
     <image name="him.borderTopL_2.png" type="multi"  />
     <image name="him.borderTopL_3.png" type="multi"  />
@@ -222,6 +229,7 @@
     <image name="him.borderTopL_5.png" type="multi"  />
     <image name="him.borderTopL_6.png" type="multi"  />
     <image name="him.borderTopL_7.png" type="multi"  />
+    <image name="him.borderTopL_8.png" type="multi"  />
     <image name="him.borderTopR_1.png" type="multi"  />
     <image name="him.borderTopR_2.png" type="multi"  />
     <image name="him.borderTopR_3.png" type="multi"  />
@@ -229,6 +237,7 @@
     <image name="him.borderTopR_5.png" type="multi"  />
     <image name="him.borderTopR_6.png" type="multi"  />
     <image name="him.borderTopR_7.png" type="multi"  />
+    <image name="him.borderTopR_8.png" type="multi"  />
     <ui name="Home" />
     <theme name="iOS7">
         <val key="@ComponentGroupBool" value="true" />
@@ -650,13 +659,11 @@
         <val key="fgColor" value="0" />
         <font key="font" type="system" face="0" style="1" size="0" />
         <val key="him.align" value="1" />
-        <border key="him.border" type="image" i1="him.borderTop_7.png" i2="him.borderBottom_7.png" i3="him.borderLeft_7.png" i4="him.borderRight_7.png" i5="him.borderTopL_7.png" i6="him.borderTopR_7.png" i7="him.borderBottomL_7.png" i8="him.borderBottomR_7.png" i9="him.borderCenter_7.png" />
+        <border key="him.border" type="image" i1="him.borderTop_8.png" i2="him.borderBottom_8.png" i3="him.borderLeft_8.png" i4="him.borderRight_8.png" i5="him.borderTopL_8.png" i6="him.borderTopR_8.png" i7="him.borderBottomL_8.png" i8="him.borderBottomR_8.png" i9="him.borderCenter_8.png" />
         <val key="him.dis#derive" value="him" />
-        <val key="him.fgColor" value="ffffff" />
-        <val key="him.marUnit" value="2,2,2,2" />
-        <val key="him.margin" value="1,1,1,1" />
+        <val key="him.fgColor" value="0" />
         <val key="him.padUnit" value="2,2,2,2" />
-        <val key="him.padding" value="2,2,2,2" />
+        <val key="him.padding" value="1,1,5,1" />
         <val key="him.press#derive" value="him" />
         <val key="him.sel#derive" value="him" />
         <val key="padUnit" value="2,2,2,2" />
@@ -668,13 +675,11 @@
         <val key="sel#transparency" value="0" />
         <val key="transparency" value="0" />
         <val key="you.align" value="3" />
-        <border key="you.border" type="image" i1="him.borderTop_6.png" i2="him.borderBottom_6.png" i3="him.borderLeft_6.png" i4="him.borderRight_6.png" i5="him.borderTopL_6.png" i6="him.borderTopR_6.png" i7="him.borderBottomL_6.png" i8="him.borderBottomR_6.png" i9="him.borderCenter_6.png" />
+        <border key="you.border" type="image" i1="you.borderTop_1.png" i2="you.borderBottom_1.png" i3="you.borderLeft_1.png" i4="you.borderRight_1.png" i5="you.borderTopL_1.png" i6="you.borderTopR_1.png" i7="you.borderBottomL_1.png" i8="you.borderBottomR_1.png" i9="you.borderCenter_1.png" />
         <val key="you.dis#derive" value="you" />
-        <val key="you.fgColor" value="ffffff" />
-        <val key="you.marUnit" value="2,2,2,2" />
-        <val key="you.margin" value="1,1,1,1" />
+        <val key="you.fgColor" value="0" />
         <val key="you.padUnit" value="2,2,2,2" />
-        <val key="you.padding" value="1,1,1,1" />
+        <val key="you.padding" value="1,1,1,5" />
         <val key="you.press#derive" value="you" />
         <val key="you.sel#derive" value="you" />
     </theme>
@@ -922,4 +927,13 @@
     <image name="ToggleButtonLast.sel#borderTopL_1.png" type="multi"  />
     <image name="ToggleButtonLast.sel#borderTopR:1" type="multi"  />
     <image name="ToggleButtonLast.sel#borderTopR_1.png" type="multi"  />
+    <image name="you.borderBottom_1.png" type="multi"  />
+    <image name="you.borderBottomL_1.png" type="multi"  />
+    <image name="you.borderBottomR_1.png" type="multi"  />
+    <image name="you.borderCenter_1.png" type="multi"  />
+    <image name="you.borderLeft_1.png" type="multi"  />
+    <image name="you.borderRight_1.png" type="multi"  />
+    <image name="you.borderTop_1.png" type="multi"  />
+    <image name="you.borderTopL_1.png" type="multi"  />
+    <image name="you.borderTopR_1.png" type="multi"  />
 </resource>

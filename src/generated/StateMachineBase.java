@@ -36,6 +36,7 @@ public abstract class StateMachineBase extends UIBuilder {
         UIBuilder.registerCustomComponent("Container", com.codename1.ui.Container.class);
         UIBuilder.registerCustomComponent("Form", com.codename1.ui.Form.class);
         UIBuilder.registerCustomComponent("InfiniteProgress", com.codename1.components.InfiniteProgress.class);
+        UIBuilder.registerCustomComponent("TextArea", com.codename1.ui.TextArea.class);
         UIBuilder.registerCustomComponent("Button", com.codename1.ui.Button.class);
         UIBuilder.registerCustomComponent("Label", com.codename1.ui.Label.class);
         UIBuilder.registerCustomComponent("TextField", com.codename1.ui.TextField.class);
@@ -77,6 +78,7 @@ public abstract class StateMachineBase extends UIBuilder {
         UIBuilder.registerCustomComponent("Container", com.codename1.ui.Container.class);
         UIBuilder.registerCustomComponent("Form", com.codename1.ui.Form.class);
         UIBuilder.registerCustomComponent("InfiniteProgress", com.codename1.components.InfiniteProgress.class);
+        UIBuilder.registerCustomComponent("TextArea", com.codename1.ui.TextArea.class);
         UIBuilder.registerCustomComponent("Button", com.codename1.ui.Button.class);
         UIBuilder.registerCustomComponent("Label", com.codename1.ui.Label.class);
         UIBuilder.registerCustomComponent("TextField", com.codename1.ui.TextField.class);
@@ -130,14 +132,14 @@ public abstract class StateMachineBase extends UIBuilder {
         return cmp;
     }
 
-    public com.codename1.ui.TextField findMessage(Component root) {
-        return (com.codename1.ui.TextField)findByName("Message", root);
+    public com.codename1.ui.TextArea findMessage(Component root) {
+        return (com.codename1.ui.TextArea)findByName("Message", root);
     }
 
-    public com.codename1.ui.TextField findMessage() {
-        com.codename1.ui.TextField cmp = (com.codename1.ui.TextField)findByName("Message", Display.getInstance().getCurrent());
+    public com.codename1.ui.TextArea findMessage() {
+        com.codename1.ui.TextArea cmp = (com.codename1.ui.TextArea)findByName("Message", Display.getInstance().getCurrent());
         if(cmp == null && aboutToShowThisContainer != null) {
-            cmp = (com.codename1.ui.TextField)findByName("Message", aboutToShowThisContainer);
+            cmp = (com.codename1.ui.TextArea)findByName("Message", aboutToShowThisContainer);
         }
         return cmp;
     }
