@@ -48,7 +48,7 @@ public class StateMachine extends StateMachineBase {
      * the constructor/class scope to avoid race conditions
      */
     protected void initVars(Resources res) {
-        Parse.initialize("http://env-3406900.mircloud.host/parse", "myAppId", "master");
+        Parse.initialize("https://env-0190235.j.layershift.co.uk/parse", "myAppId", "master");
     }
 
 
@@ -59,6 +59,19 @@ public class StateMachine extends StateMachineBase {
             ParseUser user = ParseUser.create(findUsername().getText(), findPassword().getText());
             user.put("email", findEmail().getText());
             user.put("mobile", findMobile().getText());
+            if (data.get("path") != null) {
+                try {
+                    ImageIO imgIO = ImageIO.getImageIO();
+                    ByteArrayOutputStream out = new ByteArrayOutputStream();
+                    imgIO.save(findPic().getIcon(), out, ImageIO.FORMAT_JPEG, 1);
+                    byte[] ba = out.toByteArray();
+                    ParseFile parseFile = new ParseFile(findUsername().getText() + ".jpg", ba, "image/jpeg");
+                    parseFile.save();
+                    user.put("pic", parseFile);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
             user.signUp();
             if (user.isAuthenticated()) {
                 showForm("Home", null);
@@ -448,7 +461,6 @@ public class StateMachine extends StateMachineBase {
 
     @Override
     protected void onCreate_SendHimAction(Component c, ActionEvent event) {
-
         send("him");
     }
 
@@ -473,5 +485,25 @@ public class StateMachine extends StateMachineBase {
 
     private void insertEmoji(String e) {
         findMessage().setText(findMessage().getText() + e);
+    }
+
+    @Override
+    protected void beforeSingup(Form f) {
+        findPic().setIcon(FontImage.createMaterial(FontImage.MATERIAL_CAMERA, new Style()).toImage());
+    }
+
+    @Override
+    protected void onSingup_PicAction(Component c, ActionEvent event) {
+        String value = Capture.capturePhoto();
+        if (value != null) {
+            try {
+                data.put("path", value);
+                findPic().setIcon(Image.createImage(value).scaledWidth(findPic().getWidth()));
+                findPic().getParent().repaint();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

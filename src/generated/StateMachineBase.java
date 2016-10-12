@@ -336,6 +336,18 @@ public abstract class StateMachineBase extends UIBuilder {
         return cmp;
     }
 
+    public com.codename1.ui.Button findPic(Component root) {
+        return (com.codename1.ui.Button)findByName("Pic", root);
+    }
+
+    public com.codename1.ui.Button findPic() {
+        com.codename1.ui.Button cmp = (com.codename1.ui.Button)findByName("Pic", Display.getInstance().getCurrent());
+        if(cmp == null && aboutToShowThisContainer != null) {
+            cmp = (com.codename1.ui.Button)findByName("Pic", aboutToShowThisContainer);
+        }
+        return cmp;
+    }
+
     public com.codename1.ui.Button findSendYou(Component root) {
         return (com.codename1.ui.Button)findByName("SendYou", root);
     }
@@ -1122,6 +1134,10 @@ public abstract class StateMachineBase extends UIBuilder {
             }
         }
         if(rootContainerName.equals("Singup")) {
+            if("Pic".equals(c.getName())) {
+                onSingup_PicAction(c, event);
+                return;
+            }
             if("Username".equals(c.getName())) {
                 onSingup_UsernameAction(c, event);
                 return;
@@ -1189,6 +1205,9 @@ public abstract class StateMachineBase extends UIBuilder {
       }
 
       protected void onMain_SingupAction(Component c, ActionEvent event) {
+      }
+
+      protected void onSingup_PicAction(Component c, ActionEvent event) {
       }
 
       protected void onSingup_UsernameAction(Component c, ActionEvent event) {

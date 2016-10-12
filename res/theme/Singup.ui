@@ -2,7 +2,9 @@
 
 <component type="Form" name="Singup" cloudDestinationProperty="Singup" layout="FlowLayout" flowLayoutFillRows="false" flowLayoutAlign="4" flowLayoutValign="4" title="Singup" >
   <component type="Container" name="Container" cloudDestinationProperty="Container" layout="BoxLayout" boxLayoutAxis="Y" >
-    <component type="TextField" name="Username" cloudBoundProperty="text" cloudDestinationProperty="Username" uiid="ButtonGroupFirst" text="" hint="Username" >
+    <component type="Button" name="Pic" cloudDestinationProperty="Pic" uiid="ButtonGroupFirst" text="" >
+    </component>
+    <component type="TextField" name="Username" cloudBoundProperty="text" cloudDestinationProperty="Username" uiid="ButtonGroup" text="" hint="Username" >
     </component>
     <component type="TextField" name="Mobile" cloudBoundProperty="text" cloudDestinationProperty="Mobile" uiid="ButtonGroup" text="" hint="Mobile" >
     </component>
